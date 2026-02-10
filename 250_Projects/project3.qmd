@@ -1,7 +1,8 @@
 ---
 title: "Client Report - Late Flights & Missing Data (JSON)"
 subtitle: "Course DS 250"
-author: "[STUDENT NAME]"
+author: "Markuss Saule"
+jupyter: python3
 format:
   html:
     self-contained: true
@@ -16,144 +17,520 @@ format:
     code-summary: "Show the code"
     code-overflow: wrap
     code-copy: hover
-    code-tools:
-        source: false
-        toggle: true
-        caption: See code
-execute: 
+execute:
   warning: false
-    
+  message: false
 ---
 
 ```{python}
-import pandas as pd 
+import pandas as pd
 import numpy as np
-import sqlite3
+import json
 from lets_plot import *
+from lets_plot.mapping import *
 
 LetsPlot.setup_html(isolated_frame=True)
 ```
 
+```{python}
+raw_url = "https://github.com/byuidatascience/data4missing/raw/master/data-raw/flights_missing/flights_missing.json"
+df_raw = pd.read_json(raw_url)
+
+```
 
 ```{python}
-# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html
+def coerce_numeric(s: pd.Series) -> pd.Series:
+    missing_tokens = {"", " ", "NA", "N/A", "NULL", "null", "None", "none", "nan", "NaN"}
+    s = s.apply(lambda x: np.nan if (isinstance(x, str) and x.strip() in missing_tokens) else x)
+    s = s.replace([-999, -999.0, "-999", "-999.0"], np.nan)
 
-# Include and execute your code here
-sqlite_file = 'lahmansbaseballdb.sqlite'
-# this file must be in the same location as your .qmd or .py file
-con = sqlite3.connect(sqlite_file)
+    def strip_plus(x):
+        if isinstance(x, str):
+            x = x.strip()
+            return x[:-1] if x.endswith("+") else x
+        return x
+
+    s = s.apply(strip_plus)
+    return pd.to_numeric(s, errors="coerce")
+
+
+# 1) Convert numeric columns
+id_cols = ["airport_code", "airport_name", "month"]
+num_cols = [c for c in df_raw.columns if c not in id_cols]
+
+df = df_raw.copy()
+for c in num_cols:
+    df[c] = coerce_numeric(df[c])
+
+
+
+# 2) Clean + standardize month
+df["month"] = (
+    df["month"]
+    .astype("string")
+    .str.strip()
+    .str.replace(r"\s+", " ", regex=True)
+    .str.lower()
+)
+
+# normalize known missing tokens
+df.loc[df["month"].isin(["n/a", "na", "null", "none", "nan", ""]), "month"] = pd.NA
+
+# fix dataset-specific spelling issue BEFORE title-casing
+df["month"] = df["month"].replace({"febuary": "february"})
+
+# final casing to match month_order
+df["month"] = df["month"].str.title()
+
+df["airport_name"] = (
+    df["airport_name"]
+    .astype("string")
+    .str.strip()
+    .str.replace(r"\s+", " ", regex=True)
+)
+
+df.loc[df["airport_name"].str.lower().isin(["n/a", "na", "null", "none", "nan", ""]), "airport_name"] = pd.NA
+
+# build code -> name map from any non-missing airport_name values
+code_to_name = (
+    df.dropna(subset=["airport_name"])
+      .drop_duplicates(subset=["airport_code", "airport_name"])
+      .groupby("airport_code")["airport_name"]
+      .first()
+      .to_dict()
+)
+
+# fallback for anything still missing (main one is IAD)
+fallback_names = {
+    "IAD": "Washington, DC: Washington Dulles International"
+}
+
+df["airport_name"] = df["airport_name"].fillna(df["airport_code"].map(code_to_name))
+df["airport_name"] = df["airport_name"].fillna(df["airport_code"].map(fallback_names))
+```
+
+```{python}
+# -----------------------------
+# Build summaries used in the report + elevator pitch
+# -----------------------------
+
+# Airport summary (Task 2)
+airport_summary = (
+    df.groupby("airport_code", as_index=False)
+      .agg(
+          airport_name=("airport_name", "first"),
+          total_flights=("num_of_flights_total", "sum"),
+          delayed_flights=("num_of_delays_total", "sum"),
+          total_delay_minutes=("minutes_delayed_total", "sum"),
+      )
+)
+
+airport_summary["prop_delayed"] = airport_summary["delayed_flights"] / airport_summary["total_flights"]
+airport_summary["avg_delay_hours_per_delayed_flight"] = (airport_summary["total_delay_minutes"] / airport_summary["delayed_flights"]) / 60
+airport_summary["expected_delay_hours_per_flight"] = (airport_summary["total_delay_minutes"] / airport_summary["total_flights"]) / 60
+
+worst_airport = airport_summary.sort_values("expected_delay_hours_per_flight", ascending=False).iloc[0]
+best_airport  = airport_summary.sort_values("expected_delay_hours_per_flight", ascending=True).iloc[0]
+
+# Month summary (Task 3)
+month_order = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+df_month = df.dropna(subset=["month"]).copy()
+df_month["month"] = pd.Categorical(df_month["month"], categories=month_order, ordered=True)
+
+month_summary = (
+    df_month.groupby("month", as_index=False, observed=False)
+            .agg(
+                total_flights=("num_of_flights_total", "sum"),
+                delayed_flights=("num_of_delays_total", "sum"),
+                total_delay_minutes=("minutes_delayed_total", "sum"),
+            )
+)
+
+month_summary["prop_delayed"] = np.where(
+    month_summary["total_flights"] > 0,
+    month_summary["delayed_flights"] / month_summary["total_flights"],
+    np.nan
+)
+
+valid_months = month_summary.dropna(subset=["prop_delayed"]).copy()
+best_month  = valid_months.sort_values("prop_delayed", ascending=True).iloc[0]
+worst_month = valid_months.sort_values("prop_delayed", ascending=False).iloc[0]
+
 ```
 
 ## Elevator pitch
-_A SHORT (2-3 SENTENCES) PARAGRAPH THAT `DESCRIBES KEY INSIGHTS` TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS._ (Note: this is not a summary of the project, but a summary of the results.)
 
-_A Client has requested this analysis and this is your one shot of what you would say to your boss in a 2 min elevator ride before he takes your report and hands it to the client._
+Across the 10-year window and 7 airports, delay performance isn’t evenly distributed. The worst airport by **expected delay burden per flight** adds about **`{python} f"{float(worst_airport['expected_delay_hours_per_flight']):.3f}"` hours** of delay per flight on average, while the best airport is closer to **`{python} f"{float(best_airport['expected_delay_hours_per_flight']):.3f}"` hours**.
+
+Seasonality matters too: the lowest “any-delay” risk shows up in **`{python} str(best_month['month'])`** (**`{python} f"{float(best_month['prop_delayed'])*100:.2f}"`%** of flights delayed), while **`{python} str(worst_month['month'])`** is the roughest (**`{python} f"{float(worst_month['prop_delayed'])*100:.2f}"`%**). If your goal is simply *avoid delays*, the month you fly is one of the easiest levers you can pull.
+
+---
 
 ## QUESTION|TASK 1
 
-__Write an SQL query to create a new dataframe about baseball players who attended BYU-Idaho. The new table should contain five columns: playerID, schoolID, salary, and the yearID/teamID associated with each salary. Order the table by salary (highest to lowest) and print out the table in your report.__  
+__Fix all of the varied missing data types in the data to be consistent (all missing values should be displayed as “NaN”).  
+In your report include one record example (one row) from your new data, in the raw JSON format. Your example should display the "NaN" for at least one missing value.__
 
-_type your results and analysis here_
+This dataset contains multiple “missing” encodings (numeric sentinels like `-999`, blank-like strings, and nulls). That mix is risky because summaries can silently treat “missing” as a real value and distort totals and averages. I standardized all missing variants to `NaN` and converted numeric-looking strings (like `1500+`) into valid numeric values, so every downstream calculation behaves consistently.
 
 ```{python}
-# Include and execute your code here
+nan_rows = df.index[df.isna().any(axis=1)]
+example_idx = int(nan_rows[0]) if len(nan_rows) else 0
 
-
+example_record = df.loc[example_idx].where(pd.notna(df.loc[example_idx]), "NaN").to_dict()
+print(json.dumps(example_record, indent=2))
 ```
 
+---
 
 ## QUESTION|TASK 2
 
-__This three-part question requires you to calculate batting average (number of hits divided by the number of at-bats)__  
-    a. Write an SQL query that provides playerID, yearID, and batting average for players with at least 1 at bat that year. Sort the table from highest batting average to lowest, and then by playerid alphabetically. Show the top 5 results in your report.  
-    a. Use the same query as above, but only include players with at least 10 at bats that year. Print the top 5 results.  
-    a. Now calculate the batting average for players over their entire careers (all years combined). Only include players with at least 100 at bats, and print the top 5 results.  
+__Which airport has the worst delays?__ Describe the metric you chose, and why you chose it to determine the “worst” airport.  
+Include a summary table with: total flights, total delayed flights, proportion delayed, and average delay time in hours.
 
-_type your results and analysis here_
+A delay *rate* alone can be misleading (an airport might delay fewer flights but for much longer). To reflect both frequency and severity, I used:
+
+- **Expected delay hours per flight** = `(total delay minutes / total flights) / 60`
+
+This is a practical “time tax” metric: on average, how many hours of delay does a traveler absorb per flight when routing through each airport?
 
 ```{python}
-# Include and execute your code here
-
-
+airport_table = (
+    airport_summary
+      .sort_values("expected_delay_hours_per_flight", ascending=False)
+      .assign(
+          prop_delayed_pct=lambda d: (d["prop_delayed"] * 100).round(2),
+          avg_delay_hours_per_delayed_flight=lambda d: d["avg_delay_hours_per_delayed_flight"].round(3),
+          expected_delay_hours_per_flight=lambda d: d["expected_delay_hours_per_flight"].round(4),
+      )
+      [["airport_code", "airport_name", "total_flights", "delayed_flights",
+        "prop_delayed_pct", "avg_delay_hours_per_delayed_flight", "expected_delay_hours_per_flight"]]
+)
+airport_table
 ```
 
 ```{python}
-# Include and execute your code here
+airport_plot = airport_summary[["airport_code", "expected_delay_hours_per_flight"]].copy()
+order = airport_plot.sort_values("expected_delay_hours_per_flight", ascending=False)["airport_code"].tolist()
+airport_plot["airport"] = pd.Categorical(airport_plot["airport_code"], categories=order, ordered=True)
 
+max_y = float(airport_plot["expected_delay_hours_per_flight"].max())
+y_top = max_y * 1.25
+airport_plot["label"] = airport_plot["expected_delay_hours_per_flight"].round(3).astype(str)
 
+plot_airport = (
+    ggplot(airport_plot, aes(x="airport", y="expected_delay_hours_per_flight")) +
+    geom_bar(stat="identity", width=0.75, alpha=0.9) +
+    geom_text(aes(label="label"), va="bottom", nudge_y=max_y*0.05, size=9) +
+    coord_cartesian(ylim=[0, y_top]) +
+    labs(
+        title="Expected Delay Burden per Flight by Airport",
+        subtitle="Total delay minutes ÷ total flights (converted to hours)",
+        x="Airport",
+        y="Expected delay hours per flight"
+    ) +
+    theme_minimal() +
+    theme(
+        axis_title=element_text(size=12),
+        plot_title=element_text(size=16),
+        plot_subtitle=element_text(size=12)
+    )
+)
+plot_airport
 ```
 
-```{python}
-# Include and execute your code here
+**Conclusion (Task 2):** The worst airport by expected delay burden is **`{python} str(worst_airport['airport_code'])`**. This airport is not necessarily the busiest, but it produces the highest *average time loss per booked flight*. Operationally, that makes it the highest-leverage improvement target: reducing delay minutes here saves more “hours per traveler” than the same improvement at a lower-burden airport. For travelers, this is the airport where scheduling buffers (or route alternatives) matter most.
 
-
-```
-
+---
 
 ## QUESTION|TASK 3
 
-__Pick any two baseball teams and compare them using a metric of your choice (average salary, home runs, number of wins, etc). Write an SQL query to get the data you need, then make a graph using Lets-Plot to visualize the comparison. What do you learn?__
+__What is the best month to fly if you want to avoid delays of any length?__  
+Describe the metric you chose and why you chose it. Include one chart to help support your answer, with the x-axis ordered by month. (Rows missing Month are removed.)
 
-_type your results and analysis here_
+If the goal is “avoid delays of any length,” the cleanest measure is binary: delayed vs not delayed.
+
+- **Proportion delayed** = `delayed flights / total flights`
+
+This treats a 5-minute delay and a 2-hour delay the same—because either one breaks the “no delay” goal.
 
 ```{python}
-# Include and execute your code here
-
+month_summary_display = (
+    month_summary.assign(
+        prop_delayed_pct=(month_summary["prop_delayed"] * 100).round(2),
+        avg_delay_hours_per_delayed_flight=((month_summary["total_delay_minutes"] / month_summary["delayed_flights"]) / 60).round(3),
+    )[["month", "total_flights", "delayed_flights", "prop_delayed_pct", "avg_delay_hours_per_delayed_flight"]]
+)
+month_summary_display
 ```
+
+```{python}
+month_plot = month_summary.copy()
+
+# For plotting, show months with no computable proportion as 0-height bars so the x-axis remains complete.
+month_plot["prop_delayed_plot"] = month_plot["prop_delayed"].fillna(0)
+
+month_plot["label"] = np.where(
+    month_plot["month"].isin([best_month["month"], worst_month["month"]]),
+    (month_plot["prop_delayed"] * 100).round(2).astype(str) + "%",
+    ""
+)
+
+max_y = float(month_plot["prop_delayed_plot"].max())
+y_top = max_y * 1.30
+
+plot_month = (
+    ggplot(month_plot, aes(x="month", y="prop_delayed_plot")) +
+    geom_bar(stat="identity", width=0.75, alpha=0.9) +
+    geom_text(aes(label="label"), va="bottom", nudge_y=max_y * 0.05, size=9) +
+    coord_cartesian(ylim=[0, y_top]) +
+    scale_y_continuous(format=".0%") +
+    labs(
+        title="Proportion of Flights Delayed by Month",
+        subtitle="X-axis is kept in calendar order; labels highlight the lowest- and highest-delay months",
+        x="Month",
+        y="Proportion delayed"
+    ) +
+    theme_minimal() +
+    theme(
+        axis_text_x=element_text(angle=30, hjust=1),
+        axis_title=element_text(size=12),
+        plot_title=element_text(size=16),
+        plot_subtitle=element_text(size=12),
+        plot_margin=[10, 35, 10, 10]
+    ) +
+    ggsize(950, 520)
+)
+
+plot_month
+```
+
+**Conclusion (Task 3):** The best month to fly (lowest chance of *any* delay) is **`{python} str(best_month['month'])`** at about **`{python} f"{float(best_month['prop_delayed'])*100:.2f}"`%** delayed. The worst month is **`{python} str(worst_month['month'])`** at **`{python} f"{float(worst_month['prop_delayed'])*100:.2f}"`%**. Practically, month choice is a “free” optimization: it can reduce delay risk without changing airports or airlines. If a trip is flexible, shifting from the worst month toward the best month is one of the simplest ways to improve on-time reliability.
+
+---
+
+## QUESTION|TASK 4
+
+BTS notes that the “Weather” category reflects *severe* weather only. Mild weather-related delays are often recorded inside **NAS** and **Late-Arriving Aircraft**.  
+Create a new column estimating *total* weather delays using:
+
+- 100% of Weather delays are weather  
+- 30% of Late-Arriving delays are weather  
+- NAS: Apr–Aug = 40% weather; all other months = 65% weather  
+
+Also mean-impute missing Late-Arriving delay counts and show the first 5 rows.
+
+This produces a weather measure that is closer to the real operational footprint of weather: not just storms, but also weather-driven ripple effects recorded as system or late-arrival delays.
+
+```{python}
+late_mean = df["num_of_delays_late_aircraft"].mean(skipna=True)
+df["late_aircraft_imputed"] = df["num_of_delays_late_aircraft"].fillna(late_mean)
+
+def nas_frac(m):
+    if pd.isna(m):
+        return np.nan
+    return 0.40 if m in {"April","May","June","July","August"} else 0.65
+
+df["nas_weather_frac"] = df["month"].apply(nas_frac)
+
+df["weather_delays_est"] = (
+    df["num_of_delays_weather"] +
+    0.30 * df["late_aircraft_imputed"] +
+    df["nas_weather_frac"] * df["num_of_delays_nas"]
+)
+
+df[[
+    "airport_code", "month", "year",
+    "num_of_flights_total",
+    "num_of_delays_weather",
+    "num_of_delays_late_aircraft", "late_aircraft_imputed",
+    "num_of_delays_nas", "nas_weather_frac",
+    "weather_delays_est"
+]].head(5)
+```
+
+```{python}
+missing_before = int(df["num_of_delays_late_aircraft"].isna().sum())
+
+plot_weather_dist = (
+    ggplot(df.dropna(subset=["weather_delays_est"]), aes(x="weather_delays_est")) +
+    geom_histogram(bins=30, alpha=0.9) +
+    labs(
+        title="Distribution of Estimated Weather-Related Delayed Flights",
+        subtitle=f"Severe weather + estimated mild weather (Late-Arriving mean-imputed; missing before: {missing_before})",
+        x="Estimated weather-related delayed flights (per record)",
+        y="Count of records"
+    ) +
+    theme_minimal() +
+    theme(
+        axis_title=element_text(size=12),
+        plot_title=element_text(size=16),
+        plot_subtitle=element_text(size=12)
+    )
+)
+plot_weather_dist
+```
+
+**Conclusion (Task 4):** This estimate is intentionally rule-based and traceable back to the BTS guidance. Mean-imputing Late-Arriving Aircraft prevents dropping records and keeps the derived weather estimate defined for every row used in airport comparisons. The result is a more realistic “weather impact” signal than the severe-only Weather column, because it captures downstream operational effects that weather creates even when the immediate cause is coded elsewhere.
+
+---
+
+## QUESTION|TASK 5
+
+Using the new weather estimate, create a barplot showing the proportion of all flights delayed by weather at each airport. Describe what you learn.
+
+This focuses on traveler-facing risk rather than raw counts:
+
+- **Weather delay share** = `estimated weather-delayed flights / total flights`
+
+Using a proportion makes airports comparable even when their total flight volumes differ substantially.
+
+```{python}
+airport_weather = (
+    df.groupby("airport_code", as_index=False)
+      .agg(
+          airport_name=("airport_name", "first"),
+          total_flights=("num_of_flights_total", "sum"),
+          weather_delayed=("weather_delays_est", "sum")
+      )
+)
+airport_weather["prop_weather"] = airport_weather["weather_delayed"] / airport_weather["total_flights"]
+
+order = airport_weather.sort_values("prop_weather", ascending=False)["airport_code"].tolist()
+airport_weather["airport"] = pd.Categorical(airport_weather["airport_code"], categories=order, ordered=True)
+
+airport_weather["label"] = (airport_weather["prop_weather"] * 100).round(2).astype(str) + "%"
+max_y = float(airport_weather["prop_weather"].max())
+y_top = max_y * 1.25
+
+plot_weather = (
+    ggplot(airport_weather, aes(x="airport", y="prop_weather")) +
+    geom_bar(stat="identity", width=0.75, alpha=0.9) +
+    geom_text(aes(label="label"), va="bottom", nudge_y=max_y*0.05, size=9) +
+    coord_cartesian(ylim=[0, y_top]) +
+    scale_y_continuous(format=".0%") +
+    labs(
+        title="Proportion of Flights Delayed by Weather (Estimated Severe + Mild)",
+        subtitle="Airport comparison on weather-delay risk (rates, not counts)",
+        x="Airport",
+        y="Proportion of flights delayed by weather"
+    ) +
+    theme_minimal() +
+    theme(
+        axis_title=element_text(size=12),
+        plot_title=element_text(size=16),
+        plot_subtitle=element_text(size=12)
+    )
+)
+plot_weather
+```
+
+```{python}
+top = airport_weather.sort_values("prop_weather", ascending=False).iloc[0]
+low = airport_weather.sort_values("prop_weather", ascending=True).iloc[0]
+```
+
+**Conclusion (Task 5):** **`{python} str(top['airport_code'])`** has the highest weather-delay share at about **`{python} f"{float(top['prop_weather'])*100:.2f}"`%**, while **`{python} str(low['airport_code'])`** is lowest at **`{python} f"{float(low['prop_weather'])*100:.2f}"`%**. This is a useful operational distinction: a high-volume airport may generate many weather delays in raw counts, but a traveler experiences reliability through *rate*. The airports near the top of this chart are the places where weather volatility is most likely to disrupt schedules, so buffer time, earlier departures, or alternative routings are most justified.
 
 ---
 
 ## STRETCH QUESTION|TASK 1
 
-__Advanced Salary Distribution by Position (with Case Statement):__  
+Which delay is the worst delay? Repeat the proportion analysis for **Weather (est.)**, **Carrier**, and **Security**. Compare in a chart and a table. Describe results.
 
-    * Write an SQL query that provides a summary table showing the average salary for players in each position (e.g., pitcher, catcher, outfielder) across all years. Include the following columns:
-
-        * position
-        * average_salary
-        * total_players
-        * highest_salary  
-
-    * The highest_salary column should display the highest salary ever earned by a player in that position. If no player in that position has a recorded salary, display “N/A” for the highest salary.  
-
-    * Additionally, create a new column called salary_category using a case statement:  
-
-        * If the average salary is above $1 million, categorize it as “High Salary.”  
-        * If the average salary is between $500,000 and $1 million, categorize it as “Medium Salary.”  
-        * Otherwise, categorize it as “Low Salary.”  
-
-    * Order the table by average salary in descending order.
-    * Print the top 10 rows of this summary table.  
-
-_type your results and analysis here_
+Security delays are present, but they are typically orders of magnitude smaller than carrier or weather-driven delays. A linear axis hides that difference by visually flattening Security to “near zero.” To preserve a single-view comparison while keeping Security visible, the chart uses a log-scaled y-axis and an explicit lower bound.
 
 ```{python}
-# Include and execute your code here
+airport_cat = (
+    df.groupby("airport_code", as_index=False)
+      .agg(
+          airport_name=("airport_name", "first"),
+          total_flights=("num_of_flights_total", "sum"),
+          weather=("weather_delays_est", "sum"),
+          carrier=("num_of_delays_carrier", "sum"),
+          security=("num_of_delays_security", "sum"),
+      )
+)
 
+airport_cat["weather_pct"] = (airport_cat["weather"] / airport_cat["total_flights"]) * 100
+airport_cat["carrier_pct"] = (airport_cat["carrier"] / airport_cat["total_flights"]) * 100
+airport_cat["security_pct"] = (airport_cat["security"] / airport_cat["total_flights"]) * 100
 
+stretch_table = (
+    airport_cat[["airport_code", "airport_name", "total_flights", "weather_pct", "carrier_pct", "security_pct"]]
+      .assign(
+          weather_pct=lambda d: d["weather_pct"].round(3),
+          carrier_pct=lambda d: d["carrier_pct"].round(3),
+          security_pct=lambda d: d["security_pct"].round(3),
+      )
+      .sort_values("weather_pct", ascending=False)
+)
+stretch_table
 ```
-
-
-## STRETCH QUESTION|TASK 2
-
-__Advanced Career Longevity and Performance (with Subqueries):__
-
-    * Calculate the average career length (in years) for players who have played at least one game. Then, identify the top 10 players with the longest careers (based on the number of years they played). Include their:  
-
-        * playerID
-        * first_name
-        * last_name
-        * career_length
-
-    * The career_length should be calculated as the difference between the maximum and minimum yearID for each player. 
-
-_type your results and analysis here_
 
 ```{python}
-# Include and execute your code here
+long = airport_cat.melt(
+    id_vars=["airport_code", "airport_name", "total_flights"],
+    value_vars=["weather_pct", "carrier_pct", "security_pct"],
+    var_name="category",
+    value_name="pct"
+)
 
+label_map = {"weather_pct": "Weather (est.)", "carrier_pct": "Carrier", "security_pct": "Security"}
+long["category"] = long["category"].map(label_map)
 
+order = airport_cat.sort_values("weather_pct", ascending=False)["airport_code"].tolist()
+long["airport"] = pd.Categorical(long["airport_code"], categories=order, ordered=True)
+
+min_pos = float(long.loc[long["pct"] > 0, "pct"].min())
+lower = float(max(0.005, min_pos * 0.8))
+upper = float(long["pct"].max()) * 1.35
+
+long = long.copy()
+long["lower"] = lower
+
+plot_stretch = (
+    ggplot(long, aes(x="airport", y="pct", color="category")) +
+    geom_segment(
+        aes(x="airport", xend="airport", y="lower", yend="pct"),
+        position=position_dodge(width=0.65),
+        size=1.2, alpha=0.85
+    ) +
+    geom_point(position=position_dodge(width=0.65), size=6, alpha=0.95) +
+    scale_y_log10() +
+    coord_cartesian(ylim=[lower, upper]) +
+    labs(
+        title="Delay Category Comparison by Airport",
+        subtitle="Percent of flights delayed (log scale to keep rare Security delays visible)",
+        x="Airport (ordered by weather-delay share)",
+        y="Percent of flights delayed (log scale)",
+        color="Delay category"
+    ) +
+    theme_minimal() +
+    theme(
+        axis_text_x=element_text(angle=30, hjust=1),
+        axis_title=element_text(size=12),
+        plot_title=element_text(size=16),
+        plot_subtitle=element_text(size=12),
+        legend_title=element_text(size=11),
+        legend_text=element_text(size=10)
+    )
+)
+plot_stretch
 ```
 
----
+```{python}
+totals = pd.DataFrame({
+    "category": ["Weather (est.)", "Carrier", "Security"],
+    "delayed_flights": [airport_cat["weather"].sum(), airport_cat["carrier"].sum(), airport_cat["security"].sum()],
+    "total_flights": [airport_cat["total_flights"].sum()] * 3
+})
+totals["prop"] = totals["delayed_flights"] / totals["total_flights"]
 
+worst = totals.sort_values("prop", ascending=False).iloc[0]
+least = totals.sort_values("prop", ascending=True).iloc[0]
+security_total = int(airport_cat["security"].sum())
+```
+
+**Conclusion (Stretch):** Across the full dataset, **`{python} str(worst['category'])`** is the largest contributor among these three (≈ **`{python} f"{float(worst['prop'])*100:.2f}"`%** of flights), while **`{python} str(least['category'])`** is the smallest (≈ **`{python} f"{float(least['prop'])*100:.3f}"`%**). Security delays are still present (total security-delayed flights = **`{python} security_total`**), but they are rare enough that a linear axis makes them appear to be zero. The log-scale view preserves the correct ordering of magnitude while keeping the comparison in a single, readable chart.
