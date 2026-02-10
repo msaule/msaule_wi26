@@ -136,7 +136,7 @@ best_airport  = airport_summary.sort_values("expected_delay_hours_per_flight", a
 month_order = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
 df_month = df.dropna(subset=["month"]).copy()
-df_month["month"] = pd.Categorical(df_month["month"], categories=month_order, ordered=True)
+df_month["month"] = df_month["month"].astype(str)
 
 month_summary = (
     df_month.groupby("month", as_index=False, observed=False)
@@ -212,8 +212,16 @@ airport_table
 
 ```{python}
 airport_plot = airport_summary[["airport_code", "expected_delay_hours_per_flight"]].copy()
-order = airport_plot.sort_values("expected_delay_hours_per_flight", ascending=False)["airport_code"].tolist()
-airport_plot["airport"] = pd.Categorical(airport_plot["airport_code"], categories=order, ordered=True)
+
+order = (
+    airport_plot.sort_values("expected_delay_hours_per_flight", ascending=False)
+               ["airport_code"]
+               .astype(str)
+               .tolist()
+)
+
+airport_plot["airport"] = airport_plot["airport_code"].astype(str)
+
 
 max_y = float(airport_plot["expected_delay_hours_per_flight"].max())
 y_top = max_y * 1.25
@@ -223,6 +231,7 @@ plot_airport = (
     ggplot(airport_plot, aes(x="airport", y="expected_delay_hours_per_flight")) +
     geom_bar(stat="identity", width=0.75, alpha=0.9) +
     geom_text(aes(label="label"), va="bottom", nudge_y=max_y*0.05, size=9) +
+    scale_x_discrete(limits=order) +
     coord_cartesian(ylim=[0, y_top]) +
     labs(
         title="Expected Delay Burden per Flight by Airport",
@@ -284,6 +293,7 @@ plot_month = (
     ggplot(month_plot, aes(x="month", y="prop_delayed_plot")) +
     geom_bar(stat="identity", width=0.75, alpha=0.9) +
     geom_text(aes(label="label"), va="bottom", nudge_y=max_y * 0.05, size=9) +
+    scale_x_discrete(limits=month_order) +
     coord_cartesian(ylim=[0, y_top]) +
     scale_y_continuous(format=".0%") +
     labs(
@@ -397,8 +407,13 @@ airport_weather = (
 )
 airport_weather["prop_weather"] = airport_weather["weather_delayed"] / airport_weather["total_flights"]
 
-order = airport_weather.sort_values("prop_weather", ascending=False)["airport_code"].tolist()
-airport_weather["airport"] = pd.Categorical(airport_weather["airport_code"], categories=order, ordered=True)
+order = (
+    airport_weather.sort_values("prop_weather", ascending=False)["airport_code"]
+                 .astype(str).tolist()
+)
+
+airport_weather["airport"] = airport_weather["airport_code"].astype(str)
+
 
 airport_weather["label"] = (airport_weather["prop_weather"] * 100).round(2).astype(str) + "%"
 max_y = float(airport_weather["prop_weather"].max())
@@ -408,6 +423,7 @@ plot_weather = (
     ggplot(airport_weather, aes(x="airport", y="prop_weather")) +
     geom_bar(stat="identity", width=0.75, alpha=0.9) +
     geom_text(aes(label="label"), va="bottom", nudge_y=max_y*0.05, size=9) +
+    scale_x_discrete(limits=order) +
     coord_cartesian(ylim=[0, y_top]) +
     scale_y_continuous(format=".0%") +
     labs(
@@ -480,8 +496,13 @@ long = airport_cat.melt(
 label_map = {"weather_pct": "Weather (est.)", "carrier_pct": "Carrier", "security_pct": "Security"}
 long["category"] = long["category"].map(label_map)
 
-order = airport_cat.sort_values("weather_pct", ascending=False)["airport_code"].tolist()
-long["airport"] = pd.Categorical(long["airport_code"], categories=order, ordered=True)
+order = (
+    airport_cat.sort_values("weather_pct", ascending=False)["airport_code"]
+              .astype(str).tolist()
+)
+
+long["airport"] = long["airport_code"].astype(str)
+
 
 min_pos = float(long.loc[long["pct"] > 0, "pct"].min())
 lower = float(max(0.005, min_pos * 0.8))
@@ -499,6 +520,7 @@ plot_stretch = (
     ) +
     geom_point(position=position_dodge(width=0.65), size=6, alpha=0.95) +
     scale_y_log10() +
+    scale_x_discrete(limits=order) +
     coord_cartesian(ylim=[lower, upper]) +
     labs(
         title="Delay Category Comparison by Airport",
