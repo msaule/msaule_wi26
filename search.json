@@ -1,286 +1,5 @@
 [
   {
-    "objectID": "250_Projects/project5.html",
-    "href": "250_Projects/project5.html",
-    "title": "Client Report - The War with Star Wars",
-    "section": "",
-    "text": "Show the code\nimport pandas as pd \nimport numpy as np\nfrom lets_plot import *\n# add the additional libraries you need to import for ML here\n\nLetsPlot.setup_html(isolated_frame=True)\nShow the code\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\n\n# import your data here using pandas and the URL",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project5.html#elevator-pitch",
-    "href": "250_Projects/project5.html#elevator-pitch",
-    "title": "Client Report - The War with Star Wars",
-    "section": "Elevator pitch",
-    "text": "Elevator pitch\nA SHORT (2-3 SENTENCES) PARAGRAPH THAT DESCRIBES KEY INSIGHTS TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS. (Note: this is not a summary of the project, but a summary of the results.)\nA Client has requested this analysis and this is your one shot of what you would say to your boss in a 2 min elevator ride before he takes your report and hands it to the client.",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project5.html#questiontask-1",
-    "href": "250_Projects/project5.html#questiontask-1",
-    "title": "Client Report - The War with Star Wars",
-    "section": "QUESTION|TASK 1",
-    "text": "QUESTION|TASK 1\nShorten the column names and clean them up for easier use with pandas. Provide a table or list that exemplifies how you fixed the names.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project5.html#questiontask-2",
-    "href": "250_Projects/project5.html#questiontask-2",
-    "title": "Client Report - The War with Star Wars",
-    "section": "QUESTION|TASK 2",
-    "text": "QUESTION|TASK 2\nClean and format the data so that it can be used in a machine learning model. As you format the data, you should complete each item listed below. In your final report provide example(s) of the reformatted data with a short description of the changes made.\na. Filter the dataset to respondents that have seen at least one film\na. Create a new column that converts the age ranges to a single number. Drop the age range categorical column\na. Create a new column that converts the education groupings to a single number. Drop the school categorical column\na. Create a new column that converts the income ranges to a single number. Drop the income range categorical column\na. Create your target (also known as “y” or “label”) column based on the new income range column\na. One-hot encode all remaining categorical columns\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project5.html#questiontask-3",
-    "href": "250_Projects/project5.html#questiontask-3",
-    "title": "Client Report - The War with Star Wars",
-    "section": "QUESTION|TASK 3",
-    "text": "QUESTION|TASK 3\nValidate that the data provided on GitHub lines up with the article by recreating 2 of the visuals from the article.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project5.html#questiontask-4",
-    "href": "250_Projects/project5.html#questiontask-4",
-    "title": "Client Report - The War with Star Wars",
-    "section": "QUESTION|TASK 4",
-    "text": "QUESTION|TASK 4\nBuild a machine learning model that predicts whether a person makes more than $50k. Describe your model and report the accuracy.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project5.html#stretch-questiontask-1",
-    "href": "250_Projects/project5.html#stretch-questiontask-1",
-    "title": "Client Report - The War with Star Wars",
-    "section": "STRETCH QUESTION|TASK 1",
-    "text": "STRETCH QUESTION|TASK 1\nBuild a machine learning model that predicts whether a person makes more than $50k. With accuracy of at least 65%. Describe your model and report the accuracy.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project5.html#stretch-questiontask-2",
-    "href": "250_Projects/project5.html#stretch-questiontask-2",
-    "title": "Client Report - The War with Star Wars",
-    "section": "STRETCH QUESTION|TASK 2",
-    "text": "STRETCH QUESTION|TASK 2\nValidate the data provided on GitHub lines up with the article by recreating a 3rd visual from the article.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project5.html#stretch-questiontask-3",
-    "href": "250_Projects/project5.html#stretch-questiontask-3",
-    "title": "Client Report - The War with Star Wars",
-    "section": "STRETCH QUESTION|TASK 3",
-    "text": "STRETCH QUESTION|TASK 3\nCreate a new column that converts the location groupings to a single number. Drop the location categorical column.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 5"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html",
-    "href": "250_Projects/project4.html",
-    "title": "Client Report - Can You Predict That?",
-    "section": "",
-    "text": "Show the code\nimport pandas as pd \nimport numpy as np\nfrom lets_plot import *\n# add the additional libraries you need to import for ML here\n\nLetsPlot.setup_html(isolated_frame=True)\nShow the code\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\n\n# import your data here using pandas and the URL",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html#elevator-pitch",
-    "href": "250_Projects/project4.html#elevator-pitch",
-    "title": "Client Report - Can You Predict That?",
-    "section": "Elevator pitch",
-    "text": "Elevator pitch\nA SHORT (2-3 SENTENCES) PARAGRAPH THAT DESCRIBES KEY INSIGHTS TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS. (Note: this is not a summary of the project, but a summary of the results.)\nA Client has requested this analysis and this is your one shot of what you would say to your boss in a 2 min elevator ride before he takes your report and hands it to the client.",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html#questiontask-1",
-    "href": "250_Projects/project4.html#questiontask-1",
-    "title": "Client Report - Can You Predict That?",
-    "section": "QUESTION|TASK 1",
-    "text": "QUESTION|TASK 1\nCreate 2-3 charts that evaluate potential relationships between the home variables and before1980. Explain what you learn from the charts that could help a machine learning algorithm.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html#questiontask-2",
-    "href": "250_Projects/project4.html#questiontask-2",
-    "title": "Client Report - Can You Predict That?",
-    "section": "QUESTION|TASK 2",
-    "text": "QUESTION|TASK 2\nBuild a classification model labeling houses as being built “before 1980” or “during or after 1980”. Your goal is to reach or exceed 90% accuracy. Explain your final model choice (algorithm, tuning parameters, etc) and describe what other models you tried.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html#questiontask-3",
-    "href": "250_Projects/project4.html#questiontask-3",
-    "title": "Client Report - Can You Predict That?",
-    "section": "QUESTION|TASK 3",
-    "text": "QUESTION|TASK 3\nJustify your classification model by discussing the most important features selected by your model. This discussion should include a feature importance chart and a description of the features.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html#questiontask-4",
-    "href": "250_Projects/project4.html#questiontask-4",
-    "title": "Client Report - Can You Predict That?",
-    "section": "QUESTION|TASK 4",
-    "text": "QUESTION|TASK 4\nDescribe the quality of your classification model using 2-3 different evaluation metrics. You also need to explain how to interpret each of the evaluation metrics you use.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html#stretch-questiontask-1",
-    "href": "250_Projects/project4.html#stretch-questiontask-1",
-    "title": "Client Report - Can You Predict That?",
-    "section": "STRETCH QUESTION|TASK 1",
-    "text": "STRETCH QUESTION|TASK 1\nRepeat the classification model using 3 different algorithms. Display their Feature Importance, and Decision Matrix. Explian the differences between the models and which one you would recommend to the Client.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html#stretch-questiontask-2",
-    "href": "250_Projects/project4.html#stretch-questiontask-2",
-    "title": "Client Report - Can You Predict That?",
-    "section": "STRETCH QUESTION|TASK 2",
-    "text": "STRETCH QUESTION|TASK 2\nJoin the dwellings_neighborhoods_ml.csv data to the dwelling_ml.csv on the parcel column to create a new dataset. Duplicate the code for the stretch question above and update it to use this data. Explain the differences and if this changes the model you recomend to the Client.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_Projects/project4.html#stretch-questiontask-3",
-    "href": "250_Projects/project4.html#stretch-questiontask-3",
-    "title": "Client Report - Can You Predict That?",
-    "section": "STRETCH QUESTION|TASK 3",
-    "text": "STRETCH QUESTION|TASK 3\nCan you build a model that predicts the year a house was built? Explain the model and the evaluation metrics you would use to determine if the model is good.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
-    "crumbs": [
-      "DS250 Projects",
-      "Project 4"
-    ]
-  },
-  {
-    "objectID": "250_projects.html",
-    "href": "250_projects.html",
-    "title": "DS250 Projects",
-    "section": "",
-    "text": "Project 3 - Late Flights and Missing Data (JSON)\nProject 4 - Can you Predict That?\nProject 5 - The War with StarWars",
-    "crumbs": [
-      "DS250 Projects"
-    ]
-  },
-  {
-    "objectID": "250_projects.html#repo-for-my-projects",
-    "href": "250_projects.html#repo-for-my-projects",
-    "title": "DS250 Projects",
-    "section": "",
-    "text": "Project 3 - Late Flights and Missing Data (JSON)\nProject 4 - Can you Predict That?\nProject 5 - The War with StarWars",
-    "crumbs": [
-      "DS250 Projects"
-    ]
-  },
-  {
-    "objectID": "Templates/ds250_project_template_clean.html",
-    "href": "Templates/ds250_project_template_clean.html",
-    "title": "Client Report - [Insert Project Title]",
-    "section": "",
-    "text": "paste your elevator pitch here A SHORT (4-5 SENTENCES) PARAGRAPH THAT DESCRIBES KEY INSIGHTS TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS.\n\n\nRead and format project data\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf = pd.read_csv(\"https://github.com/byuidatascience/data4names/raw/master/data-raw/names_year/names_year.csv\")\n\n\nHighlight the Questions and Tasks"
-  },
-  {
-    "objectID": "Templates/ds250_project_template_clean.html#elevator-pitch",
-    "href": "Templates/ds250_project_template_clean.html#elevator-pitch",
-    "title": "Client Report - [Insert Project Title]",
-    "section": "",
-    "text": "paste your elevator pitch here A SHORT (4-5 SENTENCES) PARAGRAPH THAT DESCRIBES KEY INSIGHTS TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS.\n\n\nRead and format project data\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf = pd.read_csv(\"https://github.com/byuidatascience/data4names/raw/master/data-raw/names_year/names_year.csv\")\n\n\nHighlight the Questions and Tasks"
-  },
-  {
-    "objectID": "Templates/ds250_project_template_clean.html#questiontask-1",
-    "href": "Templates/ds250_project_template_clean.html#questiontask-1",
-    "title": "Client Report - [Insert Project Title]",
-    "section": "QUESTION|TASK 1",
-    "text": "QUESTION|TASK 1\nCOPY PASTE QUESTION|TASK 1 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n(\n  ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n)\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\nMy useless chart\n\n\n\n\ntable example\n# Include and execute your code here\nmydat = (df.head(1000)\n    .groupby('year')\n    .sum()\n    .reset_index()\n    .tail(10)\n    .filter([\"year\", \"AK\",\"AR\"])\n)\ndisplay(mydat)\n\n\n\n\n\n\nNot much of a table\n\n\n\nyear\nAK\nAR\n\n\n\n\n96\n2006\n21.0\n183.0\n\n\n97\n2007\n28.0\n153.0\n\n\n98\n2008\n36.0\n212.0\n\n\n99\n2009\n34.0\n179.0\n\n\n100\n2010\n22.0\n196.0\n\n\n101\n2011\n41.0\n148.0\n\n\n102\n2012\n28.0\n140.0\n\n\n103\n2013\n26.0\n134.0\n\n\n104\n2014\n20.0\n114.0\n\n\n105\n2015\n28.0\n121.0"
-  },
-  {
-    "objectID": "Templates/ds250_project_template_clean.html#questiontask-2",
-    "href": "Templates/ds250_project_template_clean.html#questiontask-2",
-    "title": "Client Report - [Insert Project Title]",
-    "section": "QUESTION|TASK 2",
-    "text": "QUESTION|TASK 2\nCOPY PASTE QUESTION|TASK 2 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n# (\n#   ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n# )\n\n\n\n\ntable example\n# Include and execute your code here\n# mydat = df.head(1000)\\\n#     .groupby('year')\\\n#     .sum()\\\n#     .reset_index()\\\n#     .tail(10)\\\n#     .filter([\"year\", \"AK\",\"AR\"])\n\n# display(mydat)"
-  },
-  {
-    "objectID": "Templates/ds250_project_template_clean.html#questiontask-3",
-    "href": "Templates/ds250_project_template_clean.html#questiontask-3",
-    "title": "Client Report - [Insert Project Title]",
-    "section": "QUESTION|TASK 3",
-    "text": "QUESTION|TASK 3\nCOPY PASTE QUESTION|TASK 3 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n# Include and execute your code here\n# (\n#   ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n# )\n\n\n\n\ntable example\n# Include and execute your code here\n# mydat = df.head(1000)\\\n#     .groupby('year')\\\n#     .sum()\\\n#     .reset_index()\\\n#     .tail(10)\\\n#     .filter([\"year\", \"AK\",\"AR\"])\n\n# display(mydat)"
-  },
-  {
-    "objectID": "Templates/ds250_project_template_clean.html#questiontask-4",
-    "href": "Templates/ds250_project_template_clean.html#questiontask-4",
-    "title": "Client Report - [Insert Project Title]",
-    "section": "QUESTION|TASK 4",
-    "text": "QUESTION|TASK 4\nCOPY PASTE QUESTION|TASK 3 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n# Include and execute your code here\n# (\n#   ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n# )\n\n\n\n\ntable example\n# Include and execute your code here\n# mydat = df.head(1000)\\\n#     .groupby('year')\\\n#     .sum()\\\n#     .reset_index()\\\n#     .tail(10)\\\n#     .filter([\"year\", \"AK\",\"AR\"])\n\n# display(mydat)"
-  },
-  {
-    "objectID": "Templates/ds250_project_template_clean.html#questiontask-5",
-    "href": "Templates/ds250_project_template_clean.html#questiontask-5",
-    "title": "Client Report - [Insert Project Title]",
-    "section": "QUESTION|TASK 5",
-    "text": "QUESTION|TASK 5\nCOPY PASTE QUESTION|TASK 3 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n# Include and execute your code here\n# (\n#   ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n# )\n\n\n\n\ntable example\n# Include and execute your code here\n# mydat = df.head(1000)\\\n#     .groupby('year')\\\n#     .sum()\\\n#     .reset_index()\\\n#     .tail(10)\\\n#     .filter([\"year\", \"AK\",\"AR\"])\n\n# display(mydat)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "about me",
-    "section": "",
-    "text": "MarkDown Basics"
-  },
-  {
-    "objectID": "index.html#title-2-header",
-    "href": "index.html#title-2-header",
-    "title": "about me",
-    "section": "",
-    "text": "MarkDown Basics"
-  },
-  {
     "objectID": "Templates/DS250_Template.html",
     "href": "Templates/DS250_Template.html",
     "title": "Client Report - [Insert Project Title]",
@@ -425,10 +144,354 @@
     ]
   },
   {
+    "objectID": "250_Projects/project4.html",
+    "href": "250_Projects/project4.html",
+    "title": "Client Report - Can You Predict That?",
+    "section": "",
+    "text": "Show the code\nimport pandas as pd\nimport numpy as np\nfrom lets_plot import *\nfrom sklearn.model_selection import train_test_split, GridSearchCV\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, RandomForestRegressor\nfrom sklearn.metrics import (\n    accuracy_score,\n    precision_score,\n    recall_score,\n    f1_score,\n    roc_auc_score,\n    confusion_matrix,\n    ConfusionMatrixDisplay,\n    mean_absolute_error,\n    mean_squared_error,\n    r2_score,\n)\nimport matplotlib.pyplot as plt\nfrom IPython.display import display, Markdown\n\nLetsPlot.setup_html(isolated_frame=True)\n\nnp.random.seed(42)\nShow the code\n# Data URLs\nmain_url = \"https://github.com/byuidatascience/data4dwellings/raw/master/data-raw/dwellings_ml/dwellings_ml.csv\"\nnbhd_url = \"https://github.com/byuidatascience/data4dwellings/raw/master/data-raw/dwellings_neighborhoods_ml/dwellings_neighborhoods_ml.csv\"\n\n# Load main modeling data\ndf = pd.read_csv(main_url)\n\n# Basic labels for readable charts/tables\ndf[\"era\"] = np.where(df[\"before1980\"] == 1, \"Before 1980\", \"1980 or Later\")\n\n# Quick profile\nprofile = pd.DataFrame(\n    {\n        \"rows\": [len(df)],\n        \"columns\": [df.shape[1]],\n        \"pre_1980_rate\": [df[\"before1980\"].mean()],\n    }\n)\nprofile\n\n\n\n\n\n\n\n\n\nrows\ncolumns\npre_1980_rate\n\n\n\n\n0\n22913\n52\n0.624929",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project4.html#elevator-pitch",
+    "href": "250_Projects/project4.html#elevator-pitch",
+    "title": "Client Report - Can You Predict That?",
+    "section": "Elevator pitch",
+    "text": "Elevator pitch\nA leakage-safe Random Forest model (excluding yrbuilt, which is unavailable in the missing-year use case) classified pre-1980 homes at 92.84% accuracy with 0.9788 ROC-AUC on holdout data. The strongest predictors were structural and form-factor signals (livearea, stories, arcstyle_ONE-STORY, numbaths), which aligns with historical construction patterns in Denver. Adding one-hot neighborhood indicators in the stretch analysis raised the best model to 96.07% accuracy, so I recommend the neighborhood-enhanced Random Forest as the production option.",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project4.html#questiontask-1",
+    "href": "250_Projects/project4.html#questiontask-1",
+    "title": "Client Report - Can You Predict That?",
+    "section": "QUESTION|TASK 1",
+    "text": "QUESTION|TASK 1\nCreate 2-3 charts that evaluate potential relationships between the home variables and before1980. Explain what you learn from the charts that could help a machine learning algorithm.\nHomes in the pre-1980 class are visibly smaller and lower-density. Mean livearea is about 1,289.84 sq ft for pre-1980 homes versus 1,878.92 sq ft for newer homes, and pre-1980 homes average fewer bathrooms (1.97 vs 2.98). Style indicators also separate classes clearly: about 56.3% of pre-1980 homes are one-story versus only 6.4% in 1980+ homes.\nThese relationships are useful for machine learning because they are high-signal, non-random patterns tied to construction era. A classifier can exploit combinations of structural size, layout, and style features to estimate the probability that a home is pre-1980.\nFor visual clarity, the first and third charts use display-only axis zoom (high-percentile limits) so extreme outliers do not compress the main pattern. The full, untrimmed data is still used for modeling.\n\n\nShow the code\n# Summary stats used in interpretation\nsummary_stats = (\n    df.groupby(\"before1980\")[[\"livearea\", \"numbaths\", \"stories\", \"tasp\", \"netprice\"]]\n    .mean()\n    .round(2)\n)\nsummary_stats\n\n\n\n\n\n\n\n\n\nlivearea\nnumbaths\nstories\ntasp\nnetprice\n\n\nbefore1980\n\n\n\n\n\n\n\n\n\n0\n1878.92\n2.98\n1.76\n1090878.11\n1086428.29\n\n\n1\n1289.84\n1.97\n1.21\n247490.60\n244883.83\n\n\n\n\n\n\n\n\n\nShow the code\n# Display-only caps for visual readability (do not affect modeling data)\nlivearea_p99 = float(df[\"livearea\"].quantile(0.99))\n\n# Chart 1: Live area by class\np1 = (\n    ggplot(df, aes(x=\"era\", y=\"livearea\", fill=\"era\"))\n    + geom_boxplot(alpha=0.75, outlier_alpha=0.08)\n    + coord_cartesian(ylim=[0, livearea_p99])\n    + labs(\n        title=\"Livable Area by Class (99th Percentile Zoom)\",\n        subtitle=f\"Display capped at {livearea_p99:,.0f} sq ft to reduce outlier distortion\",\n        x=\"Class\",\n        y=\"Live Area (sq ft)\",\n    )\n    + theme_minimal()\n    + theme(legend_position=\"none\")\n    + ggsize(900, 480)\n)\n\n# Chart 2: Tax assessed selling price by class (log scale)\np2 = (\n    ggplot(df, aes(x=\"era\", y=\"tasp\", fill=\"era\"))\n    + geom_boxplot(alpha=0.75, outlier_alpha=0.05)\n    + scale_y_log10()\n    + labs(\n        title=\"Tax Assessed Price by Class (log scale)\",\n        x=\"Class\",\n        y=\"Tax Assessed Selling Price (log10)\",\n    )\n    + theme_minimal()\n    + theme(legend_position=\"none\")\n    + ggsize(900, 480)\n)\n\n# Chart 3: Relationship between size and bathrooms\nsample_df = df.sample(5000, random_state=42)\nlivearea_sample_p995 = float(sample_df[\"livearea\"].quantile(0.995))\np3 = (\n    ggplot(sample_df, aes(x=\"livearea\", y=\"numbaths\", color=\"era\"))\n    + geom_point(alpha=0.35, size=1.7)\n    + coord_cartesian(xlim=[0, livearea_sample_p995], ylim=[0, 9.5])\n    + labs(\n        title=\"Live Area vs Bathrooms (sample, 99.5th Percentile X Zoom)\",\n        subtitle=f\"X-axis capped at {livearea_sample_p995:,.0f} sq ft for readability\",\n        x=\"Live Area (sq ft)\",\n        y=\"Number of Bathrooms\",\n        color=\"Class\",\n    )\n    + theme_minimal()\n    + ggsize(900, 500)\n)\n\np1\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\nShow the code\np2\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\nShow the code\np3\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\nShow the code\n# Additional style/garage prevalence summary\nstyle_summary = (\n    df.groupby(\"era\")[[\"arcstyle_ONE-STORY\", \"arcstyle_TWO-STORY\", \"gartype_Att\"]]\n    .mean()\n    .mul(100)\n    .round(1)\n)\nstyle_summary\n\n\n\n\n\n\n\n\n\narcstyle_ONE-STORY\narcstyle_TWO-STORY\ngartype_Att\n\n\nera\n\n\n\n\n\n\n\n1980 or Later\n6.4\n40.5\n60.3\n\n\nBefore 1980\n56.3\n9.1\n23.5",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project4.html#questiontask-2",
+    "href": "250_Projects/project4.html#questiontask-2",
+    "title": "Client Report - Can You Predict That?",
+    "section": "QUESTION|TASK 2",
+    "text": "QUESTION|TASK 2\nBuild a classification model labeling houses as being built “before 1980” or “during or after 1980”. Your goal is to reach or exceed 90% accuracy. Explain your final model choice (algorithm, tuning parameters, etc) and describe what other models you tried.\nI tested three algorithms using the same 80/20 stratified split:\n\nLogistic Regression (scaled features)\nGradient Boosting Classifier\nRandom Forest Classifier\n\nThen I tuned Random Forest with GridSearchCV and selected the best cross-validated configuration. The tuned Random Forest reached 92.84% test accuracy, exceeding the 90% target.\nI selected Random Forest as the final model because it outperformed the alternatives in holdout accuracy and ROC-AUC while handling nonlinear interactions well.\n\n\nShow the code\n# Avoid target leakage:\n# - drop yrbuilt because the target before1980 is derived from year built.\n# - drop parcel because it is an identifier, not a generalizable feature.\nX = df.drop(columns=[\"before1980\", \"yrbuilt\", \"parcel\", \"era\"], errors=\"ignore\")\ny = df[\"before1980\"]\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X,\n    y,\n    test_size=0.20,\n    random_state=42,\n    stratify=y,\n)\n\nbaseline_models = {\n    \"Logistic Regression\": Pipeline(\n        [\n            (\"scaler\", StandardScaler()),\n            (\"clf\", LogisticRegression(max_iter=5000, solver=\"liblinear\")),\n        ]\n    ),\n    \"Gradient Boosting\": GradientBoostingClassifier(random_state=42),\n    \"Random Forest (baseline)\": RandomForestClassifier(\n        random_state=42,\n        n_estimators=200,\n        n_jobs=-1,\n    ),\n}\n\nbaseline_results = []\nfor name, model in baseline_models.items():\n    model.fit(X_train, y_train)\n    preds = model.predict(X_test)\n    probs = model.predict_proba(X_test)[:, 1]\n\n    baseline_results.append(\n        {\n            \"Model\": name,\n            \"Accuracy\": accuracy_score(y_test, preds),\n            \"Precision\": precision_score(y_test, preds),\n            \"Recall\": recall_score(y_test, preds),\n            \"F1\": f1_score(y_test, preds),\n            \"ROC_AUC\": roc_auc_score(y_test, probs),\n        }\n    )\n\nbaseline_results_df = pd.DataFrame(baseline_results).sort_values(\"Accuracy\", ascending=False)\nbaseline_results_df\n\n\n\n\n\n\n\n\n\nModel\nAccuracy\nPrecision\nRecall\nF1\nROC_AUC\n\n\n\n\n2\nRandom Forest (baseline)\n0.927995\n0.941771\n0.943087\n0.942428\n0.978665\n\n\n1\nGradient Boosting\n0.898538\n0.908410\n0.931564\n0.919841\n0.961693\n\n\n0\nLogistic Regression\n0.872791\n0.888586\n0.910615\n0.899465\n0.937098\n\n\n\n\n\n\n\n\n\nShow the code\n# Tune Random Forest\nrf_param_grid = {\n    \"n_estimators\": [200, 350],\n    \"max_depth\": [None, 16],\n    \"min_samples_split\": [2, 5],\n    \"max_features\": [\"sqrt\"],\n}\n\nrf_grid = GridSearchCV(\n    estimator=RandomForestClassifier(random_state=42, n_jobs=-1),\n    param_grid=rf_param_grid,\n    cv=4,\n    scoring=\"accuracy\",\n    n_jobs=-1,\n)\n\nrf_grid.fit(X_train, y_train)\nbest_rf = rf_grid.best_estimator_\n\nrf_preds = best_rf.predict(X_test)\nrf_probs = best_rf.predict_proba(X_test)[:, 1]\n\nrf_metrics = pd.DataFrame(\n    {\n        \"Metric\": [\"Accuracy\", \"Precision\", \"Recall\", \"F1\", \"ROC_AUC\"],\n        \"Value\": [\n            accuracy_score(y_test, rf_preds),\n            precision_score(y_test, rf_preds),\n            recall_score(y_test, rf_preds),\n            f1_score(y_test, rf_preds),\n            roc_auc_score(y_test, rf_probs),\n        ],\n    }\n)\n\nprint(\"Best RF parameters:\", rf_grid.best_params_)\nprint(\"Best cross-val accuracy:\", round(rf_grid.best_score_, 4))\nrf_metrics\n\n\nBest RF parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 350}\nBest cross-val accuracy: 0.9233\n\n\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\n0\nAccuracy\n0.928431\n\n\n1\nPrecision\n0.943047\n\n\n2\nRecall\n0.942388\n\n\n3\nF1\n0.942717\n\n\n4\nROC_AUC\n0.978810",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project4.html#questiontask-3",
+    "href": "250_Projects/project4.html#questiontask-3",
+    "title": "Client Report - Can You Predict That?",
+    "section": "QUESTION|TASK 3",
+    "text": "QUESTION|TASK 3\nJustify your classification model by discussing the most important features selected by your model. This discussion should include a feature importance chart and a description of the features.\nThe final Random Forest ranked livearea, arcstyle_ONE-STORY, stories, numbaths, and price-assessment features (tasp, netprice, sprice) among the most important predictors. This is consistent with the domain context: home form factor and footprint differ meaningfully between older and newer construction periods.\nPractically, this means the model is not relying on a single feature. It is using a pattern of size, layout, and valuation signals, which generally improves robustness compared to one-variable rules.\n\n\nShow the code\nrf_importance = (\n    pd.Series(best_rf.feature_importances_, index=X.columns)\n    .sort_values(ascending=False)\n    .reset_index()\n)\nrf_importance.columns = [\"feature\", \"importance\"]\n\ntop_rf_importance = rf_importance.head(15)\ntop_rf_importance\n\n\n\n\n\n\n\n\n\nfeature\nimportance\n\n\n\n\n0\nlivearea\n0.084573\n\n\n1\narcstyle_ONE-STORY\n0.077952\n\n\n2\nstories\n0.077855\n\n\n3\nnumbaths\n0.061559\n\n\n4\ntasp\n0.059662\n\n\n5\nnetprice\n0.057978\n\n\n6\nsprice\n0.056963\n\n\n7\ngartype_Att\n0.056820\n\n\n8\nbasement\n0.042084\n\n\n9\nquality_C\n0.040766\n\n\n10\nabstrprd\n0.036896\n\n\n11\nquality_B\n0.027542\n\n\n12\nnocars\n0.026919\n\n\n13\narcstyle_TWO-STORY\n0.026228\n\n\n14\nsmonth\n0.025564\n\n\n\n\n\n\n\n\n\nShow the code\nimportance_plot = (\n    ggplot(top_rf_importance, aes(x=\"feature\", y=\"importance\"))\n    + geom_bar(stat=\"identity\", fill=\"#2f5d62\")\n    + coord_flip()\n    + labs(\n        title=\"Top 15 Feature Importances - Final Random Forest\",\n        x=\"Feature\",\n        y=\"Importance\",\n    )\n    + theme_minimal()\n    + ggsize(900, 500)\n)\n\nimportance_plot",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project4.html#questiontask-4",
+    "href": "250_Projects/project4.html#questiontask-4",
+    "title": "Client Report - Can You Predict That?",
+    "section": "QUESTION|TASK 4",
+    "text": "QUESTION|TASK 4\nDescribe the quality of your classification model using 2-3 different evaluation metrics. You also need to explain how to interpret each of the evaluation metrics you use.\nI used Accuracy, Precision, Recall, and ROC-AUC.\n\nAccuracy (0.9284): 92.84% of all homes in the test set were classified correctly.\nPrecision (0.9430): when the model predicts “before 1980,” it is correct 94.30% of the time.\nRecall (0.9424): the model correctly finds 94.24% of truly pre-1980 homes.\nROC-AUC (0.9788): across thresholds, the model has excellent class-separation ability (close to 1.0 is best).\n\nThe confusion matrix shows balanced performance in both classes, not just one-sided accuracy.\n\n\nShow the code\nfinal_eval = pd.DataFrame(\n    {\n        \"Metric\": [\"Accuracy\", \"Precision\", \"Recall\", \"F1\", \"ROC_AUC\"],\n        \"Value\": [\n            accuracy_score(y_test, rf_preds),\n            precision_score(y_test, rf_preds),\n            recall_score(y_test, rf_preds),\n            f1_score(y_test, rf_preds),\n            roc_auc_score(y_test, rf_probs),\n        ],\n    }\n)\nfinal_eval\n\n\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\n0\nAccuracy\n0.928431\n\n\n1\nPrecision\n0.943047\n\n\n2\nRecall\n0.942388\n\n\n3\nF1\n0.942717\n\n\n4\nROC_AUC\n0.978810\n\n\n\n\n\n\n\n\n\nShow the code\n# Confusion matrix for final model\ncm = confusion_matrix(y_test, rf_preds)\ncm_df = pd.DataFrame(\n    cm,\n    index=[\"Actual: 1980 or later\", \"Actual: Before 1980\"],\n    columns=[\"Pred: 1980 or later\", \"Pred: Before 1980\"],\n)\ncm_df\n\n\n\n\n\n\n\n\n\nPred: 1980 or later\nPred: Before 1980\n\n\n\n\nActual: 1980 or later\n1556\n163\n\n\nActual: Before 1980\n165\n2699\n\n\n\n\n\n\n\n\n\nShow the code\nfig, ax = plt.subplots(figsize=(6, 4.5))\nConfusionMatrixDisplay(\n    confusion_matrix=cm,\n    display_labels=[\"1980 or Later\", \"Before 1980\"],\n).plot(ax=ax, colorbar=False)\nax.set_title(\"Final Random Forest - Confusion Matrix\")\nplt.show()",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project4.html#stretch-questiontask-1",
+    "href": "250_Projects/project4.html#stretch-questiontask-1",
+    "title": "Client Report - Can You Predict That?",
+    "section": "STRETCH QUESTION|TASK 1",
+    "text": "STRETCH QUESTION|TASK 1\nRepeat the classification model using 3 different algorithms. Display their Feature Importance, and Decision Matrix. Explain the differences between the models and which one you would recommend to the Client.\nAcross the three algorithms on the same leakage-safe feature set, Random Forest performed best overall (accuracy and ROC-AUC), followed by Gradient Boosting, then Logistic Regression. Logistic Regression produced a simpler linear decision boundary and lower accuracy, while tree-based models captured nonlinear interactions better.\nRecommendation for the client on this feature set: Random Forest.\n\n\nShow the code\ndef model_importance(model, feature_names, model_name):\n    \"\"\"Extract a comparable importance score for each model type.\"\"\"\n    if model_name == \"Logistic Regression\":\n        coef = np.abs(model.named_steps[\"clf\"].coef_[0])\n        return pd.Series(coef, index=feature_names).sort_values(ascending=False)\n    return pd.Series(model.feature_importances_, index=feature_names).sort_values(ascending=False)\n\nstretch_models = {\n    \"Logistic Regression\": Pipeline(\n        [\n            (\"scaler\", StandardScaler()),\n            (\"clf\", LogisticRegression(max_iter=5000, solver=\"liblinear\")),\n        ]\n    ),\n    \"Gradient Boosting\": GradientBoostingClassifier(random_state=42),\n    \"Random Forest\": RandomForestClassifier(\n        random_state=42,\n        n_estimators=350,\n        max_depth=None,\n        max_features=\"sqrt\",\n        min_samples_split=2,\n        n_jobs=-1,\n    ),\n}\n\nstretch_results = []\nstretch_artifacts = {}\n\nfor name, model in stretch_models.items():\n    model.fit(X_train, y_train)\n    preds = model.predict(X_test)\n    probs = model.predict_proba(X_test)[:, 1]\n\n    stretch_results.append(\n        {\n            \"Model\": name,\n            \"Accuracy\": accuracy_score(y_test, preds),\n            \"Precision\": precision_score(y_test, preds),\n            \"Recall\": recall_score(y_test, preds),\n            \"F1\": f1_score(y_test, preds),\n            \"ROC_AUC\": roc_auc_score(y_test, probs),\n        }\n    )\n\n    stretch_artifacts[name] = {\n        \"preds\": preds,\n        \"importance\": model_importance(model, X.columns, name),\n    }\n\nstretch_results_df = pd.DataFrame(stretch_results).sort_values(\"Accuracy\", ascending=False)\nstretch_results_df\n\n\n\n\n\n\n\n\n\nModel\nAccuracy\nPrecision\nRecall\nF1\nROC_AUC\n\n\n\n\n2\nRandom Forest\n0.928431\n0.943047\n0.942388\n0.942717\n0.978810\n\n\n1\nGradient Boosting\n0.898538\n0.908410\n0.931564\n0.919841\n0.961693\n\n\n0\nLogistic Regression\n0.872791\n0.888586\n0.910615\n0.899465\n0.937098\n\n\n\n\n\n\n\n\n\nShow the code\n# Feature importance + confusion matrix for each algorithm\nshort_name = {\n    \"Logistic Regression\": \"Logistic Reg\",\n    \"Gradient Boosting\": \"Gradient Boosting\",\n    \"Random Forest\": \"Random Forest\",\n}\n\nfor model_name in stretch_results_df[\"Model\"]:\n    display(Markdown(f\"### {model_name}\"))\n\n    top_imp = (\n        stretch_artifacts[model_name][\"importance\"]\n        .head(10)\n        .reset_index()\n    )\n    top_imp.columns = [\"feature\", \"importance\"]\n\n    p = (\n        ggplot(top_imp, aes(x=\"feature\", y=\"importance\"))\n        + geom_bar(stat=\"identity\", fill=\"#1f7a8c\")\n        + coord_flip()\n        + labs(\n            title=f\"Top 10 Importance - {short_name.get(model_name, model_name)}\",\n            x=\"Feature\",\n            y=\"Importance\",\n        )\n        + theme_minimal()\n        + ggsize(900, 500)\n    )\n    display(p)\n\n    fig, ax = plt.subplots(figsize=(5.7, 4.3))\n    ConfusionMatrixDisplay.from_predictions(\n        y_test,\n        stretch_artifacts[model_name][\"preds\"],\n        display_labels=[\"1980 or Later\", \"Before 1980\"],\n        colorbar=False,\n        ax=ax,\n    )\n    ax.set_title(f\"Decision Matrix - {model_name}\")\n    plt.show()\n\n\nRandom Forest\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\n\n\n\n\n\nGradient Boosting\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\n\n\n\n\n\nLogistic Regression",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project4.html#stretch-questiontask-2",
+    "href": "250_Projects/project4.html#stretch-questiontask-2",
+    "title": "Client Report - Can You Predict That?",
+    "section": "STRETCH QUESTION|TASK 2",
+    "text": "STRETCH QUESTION|TASK 2\nJoin the dwellings_neighborhoods_ml.csv data to the dwelling_ml.csv on the parcel column to create a new dataset. Duplicate the code for the stretch question above and update it to use this data. Explain the differences and if this changes the model you recommend to the Client.\nAfter adding neighborhood one-hot features, model performance improved substantially for tree-based methods. The best neighborhood-enhanced Random Forest achieved about 96.07% accuracy and 0.9910 ROC-AUC, which is stronger than the non-neighborhood model.\nImportant join detail: both source tables have repeated parcel values. To avoid row multiplication in the merge, I first aggregated neighborhood rows to one row per parcel using max() across the one-hot neighborhood columns.\nThis update strengthens my recommendation: use Random Forest with neighborhood features included when those fields are available.\n\n\nShow the code\n# Load neighborhood data and deduplicate by parcel before joining\nnbhd_raw = pd.read_csv(nbhd_url)\nnbhd_cols = [c for c in nbhd_raw.columns if c != \"parcel\"]\nnbhd_unique = nbhd_raw.groupby(\"parcel\", as_index=False)[nbhd_cols].max()\n\njoined = df.merge(nbhd_unique, on=\"parcel\", how=\"left\")\n\nX_nb = joined.drop(columns=[\"before1980\", \"yrbuilt\", \"parcel\", \"era\"], errors=\"ignore\").fillna(0)\ny_nb = joined[\"before1980\"]\n\nX_nb_train, X_nb_test, y_nb_train, y_nb_test = train_test_split(\n    X_nb,\n    y_nb,\n    test_size=0.20,\n    random_state=42,\n    stratify=y_nb,\n)\n\nnb_models = {\n    \"Logistic Regression\": Pipeline(\n        [\n            (\"scaler\", StandardScaler()),\n            (\"clf\", LogisticRegression(max_iter=5000, solver=\"liblinear\")),\n        ]\n    ),\n    \"Gradient Boosting\": GradientBoostingClassifier(random_state=42),\n    \"Random Forest\": RandomForestClassifier(\n        random_state=42,\n        n_estimators=350,\n        max_depth=None,\n        max_features=\"sqrt\",\n        min_samples_split=2,\n        n_jobs=-1,\n    ),\n}\n\nnb_results = []\nnb_artifacts = {}\n\nfor name, model in nb_models.items():\n    model.fit(X_nb_train, y_nb_train)\n    preds = model.predict(X_nb_test)\n    probs = model.predict_proba(X_nb_test)[:, 1]\n\n    nb_results.append(\n        {\n            \"Model\": name,\n            \"Accuracy\": accuracy_score(y_nb_test, preds),\n            \"Precision\": precision_score(y_nb_test, preds),\n            \"Recall\": recall_score(y_nb_test, preds),\n            \"F1\": f1_score(y_nb_test, preds),\n            \"ROC_AUC\": roc_auc_score(y_nb_test, probs),\n        }\n    )\n\n    if name == \"Logistic Regression\":\n        imp = pd.Series(\n            np.abs(model.named_steps[\"clf\"].coef_[0]),\n            index=X_nb.columns,\n        ).sort_values(ascending=False)\n    else:\n        imp = pd.Series(model.feature_importances_, index=X_nb.columns).sort_values(ascending=False)\n\n    nb_artifacts[name] = {\"preds\": preds, \"importance\": imp}\n\nnb_results_df = pd.DataFrame(nb_results).sort_values(\"Accuracy\", ascending=False)\nnb_results_df\n\n\n\n\n\n\n\n\n\nModel\nAccuracy\nPrecision\nRecall\nF1\nROC_AUC\n\n\n\n\n2\nRandom Forest\n0.960724\n0.971871\n0.965084\n0.968465\n0.991048\n\n\n0\nLogistic Regression\n0.945451\n0.957313\n0.955307\n0.956309\n0.985708\n\n\n1\nGradient Boosting\n0.927777\n0.941751\n0.942737\n0.942244\n0.977296\n\n\n\n\n\n\n\n\n\nShow the code\n# Feature importance + confusion matrix for each neighborhood model\nnb_short_name = {\n    \"Logistic Regression\": \"Logistic Reg\",\n    \"Gradient Boosting\": \"Gradient Boosting\",\n    \"Random Forest\": \"Random Forest\",\n}\n\nfor model_name in nb_results_df[\"Model\"]:\n    display(Markdown(f\"### Neighborhood Model: {model_name}\"))\n\n    top_imp = nb_artifacts[model_name][\"importance\"].head(10).reset_index()\n    top_imp.columns = [\"feature\", \"importance\"]\n\n    p = (\n        ggplot(top_imp, aes(x=\"feature\", y=\"importance\"))\n        + geom_bar(stat=\"identity\", fill=\"#3a7d44\")\n        + coord_flip()\n        + labs(\n            title=f\"Top 10 Importance - Nbhd {nb_short_name.get(model_name, model_name)}\",\n            x=\"Feature\",\n            y=\"Importance\",\n        )\n        + theme_minimal()\n        + ggsize(900, 500)\n    )\n    display(p)\n\n    fig, ax = plt.subplots(figsize=(5.7, 4.3))\n    ConfusionMatrixDisplay.from_predictions(\n        y_nb_test,\n        nb_artifacts[model_name][\"preds\"],\n        display_labels=[\"1980 or Later\", \"Before 1980\"],\n        colorbar=False,\n        ax=ax,\n    )\n    ax.set_title(f\"Decision Matrix - Neighborhood {model_name}\")\n    plt.show()\n\n\nNeighborhood Model: Random Forest\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\n\n\n\n\n\nNeighborhood Model: Logistic Regression\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\n\n\n\n\n\nNeighborhood Model: Gradient Boosting",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project4.html#stretch-questiontask-3",
+    "href": "250_Projects/project4.html#stretch-questiontask-3",
+    "title": "Client Report - Can You Predict That?",
+    "section": "STRETCH QUESTION|TASK 3",
+    "text": "STRETCH QUESTION|TASK 3\nCan you build a model that predicts the year a house was built? Explain the model and the evaluation metrics you would use to determine if the model is good.\nYes. I built a Random Forest Regressor to predict yrbuilt, again excluding leakage features (before1980 and parcel).\n\nMAE (Mean Absolute Error): average absolute miss in years.\nRMSE (Root Mean Squared Error): penalizes larger misses more heavily than MAE.\nR-squared: percent of variance in year built explained by the model.\n\nResults show moderate quality for year-level prediction: MAE ~10.12 years, RMSE ~16.60 years, R2 ~0.797. This is useful for rough historical estimation, but less reliable for precise year assignment.\n\n\nShow the code\nX_reg = df.drop(columns=[\"yrbuilt\", \"before1980\", \"parcel\", \"era\"], errors=\"ignore\")\ny_reg = df[\"yrbuilt\"]\n\nXr_train, Xr_test, yr_train, yr_test = train_test_split(\n    X_reg,\n    y_reg,\n    test_size=0.20,\n    random_state=42,\n)\n\nrf_reg = RandomForestRegressor(\n    random_state=42,\n    n_estimators=350,\n    n_jobs=-1,\n)\n\nrf_reg.fit(Xr_train, yr_train)\nyr_pred = rf_reg.predict(Xr_test)\n\nmae = mean_absolute_error(yr_test, yr_pred)\nrmse = np.sqrt(mean_squared_error(yr_test, yr_pred))\nr2 = r2_score(yr_test, yr_pred)\nwithin_5 = np.mean(np.abs(yr_pred - yr_test) &lt;= 5)\nwithin_10 = np.mean(np.abs(yr_pred - yr_test) &lt;= 10)\n\nreg_metrics = pd.DataFrame(\n    {\n        \"Metric\": [\"MAE\", \"RMSE\", \"R2\", \"Pct within 5 years\", \"Pct within 10 years\"],\n        \"Value\": [mae, rmse, r2, within_5, within_10],\n    }\n)\nreg_metrics\n\n\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\n0\nMAE\n10.122403\n\n\n1\nRMSE\n16.604617\n\n\n2\nR2\n0.797436\n\n\n3\nPct within 5 years\n0.474362\n\n\n4\nPct within 10 years\n0.668340\n\n\n\n\n\n\n\n\n\nShow the code\n# Predicted vs actual year built\npred_df = pd.DataFrame({\"actual\": yr_test, \"predicted\": yr_pred})\n\nyear_plot = (\n    ggplot(pred_df.sample(3000, random_state=42), aes(x=\"actual\", y=\"predicted\"))\n    + geom_point(alpha=0.35, color=\"#2f6690\")\n    + geom_abline(slope=1, intercept=0, linetype=\"dashed\", color=\"#c1121f\")\n    + labs(\n        title=\"Predicted vs Actual Year Built (sample of 3,000)\",\n        x=\"Actual Year Built\",\n        y=\"Predicted Year Built\",\n    )\n    + theme_minimal()\n    + ggsize(900, 500)\n)\n\nyear_plot",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 4"
+    ]
+  },
+  {
+    "objectID": "250_projects.html",
+    "href": "250_projects.html",
+    "title": "DS250 Projects",
+    "section": "",
+    "text": "Project 3 - Late Flights and Missing Data (JSON)\nProject 4 - Can you Predict That?\nProject 5 - The War with StarWars",
+    "crumbs": [
+      "DS250 Projects"
+    ]
+  },
+  {
+    "objectID": "250_projects.html#repo-for-my-projects",
+    "href": "250_projects.html#repo-for-my-projects",
+    "title": "DS250 Projects",
+    "section": "",
+    "text": "Project 3 - Late Flights and Missing Data (JSON)\nProject 4 - Can you Predict That?\nProject 5 - The War with StarWars",
+    "crumbs": [
+      "DS250 Projects"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "about me",
+    "section": "",
+    "text": "MarkDown Basics"
+  },
+  {
+    "objectID": "index.html#title-2-header",
+    "href": "index.html#title-2-header",
+    "title": "about me",
+    "section": "",
+    "text": "MarkDown Basics"
+  },
+  {
+    "objectID": "250_Projects/P4_template.html",
+    "href": "250_Projects/P4_template.html",
+    "title": "Client Report - Can You Predict That?",
+    "section": "",
+    "text": "Show the code\nimport pandas as pd\nimport numpy as np\nfrom lets_plot import *\nfrom sklearn.model_selection import train_test_split, GridSearchCV\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, RandomForestRegressor\nfrom sklearn.metrics import (\n    accuracy_score,\n    precision_score,\n    recall_score,\n    f1_score,\n    roc_auc_score,\n    confusion_matrix,\n    ConfusionMatrixDisplay,\n    mean_absolute_error,\n    mean_squared_error,\n    r2_score,\n)\nimport matplotlib.pyplot as plt\nfrom IPython.display import display, Markdown\n\nLetsPlot.setup_html(isolated_frame=True)\n\nnp.random.seed(42)\nShow the code\n# Data URLs\nmain_url = \"https://github.com/byuidatascience/data4dwellings/raw/master/data-raw/dwellings_ml/dwellings_ml.csv\"\nnbhd_url = \"https://github.com/byuidatascience/data4dwellings/raw/master/data-raw/dwellings_neighborhoods_ml/dwellings_neighborhoods_ml.csv\"\n\n# Load main modeling data\ndf = pd.read_csv(main_url)\n\n# Basic labels for readable charts/tables\ndf[\"era\"] = np.where(df[\"before1980\"] == 1, \"Before 1980\", \"1980 or Later\")\n\n# Quick profile\nprofile = pd.DataFrame(\n    {\n        \"rows\": [len(df)],\n        \"columns\": [df.shape[1]],\n        \"pre_1980_rate\": [df[\"before1980\"].mean()],\n    }\n)\nprofile\n\n\n\n\n\n\n\n\n\nrows\ncolumns\npre_1980_rate\n\n\n\n\n0\n22913\n52\n0.624929"
+  },
+  {
+    "objectID": "250_Projects/P4_template.html#elevator-pitch",
+    "href": "250_Projects/P4_template.html#elevator-pitch",
+    "title": "Client Report - Can You Predict That?",
+    "section": "Elevator pitch",
+    "text": "Elevator pitch\nA leakage-safe Random Forest model (excluding yrbuilt, which is unavailable in the missing-year use case) classified pre-1980 homes at 92.84% accuracy with 0.9788 ROC-AUC on holdout data. The strongest predictors were structural and form-factor signals (livearea, stories, arcstyle_ONE-STORY, numbaths), which aligns with historical construction patterns in Denver. Adding one-hot neighborhood indicators in the stretch analysis raised the best model to 96.07% accuracy, so I recommend the neighborhood-enhanced Random Forest as the production option."
+  },
+  {
+    "objectID": "250_Projects/P4_template.html#questiontask-1",
+    "href": "250_Projects/P4_template.html#questiontask-1",
+    "title": "Client Report - Can You Predict That?",
+    "section": "QUESTION|TASK 1",
+    "text": "QUESTION|TASK 1\nCreate 2-3 charts that evaluate potential relationships between the home variables and before1980. Explain what you learn from the charts that could help a machine learning algorithm.\nHomes in the pre-1980 class are visibly smaller and lower-density. Mean livearea is about 1,289.84 sq ft for pre-1980 homes versus 1,878.92 sq ft for newer homes, and pre-1980 homes average fewer bathrooms (1.97 vs 2.98). Style indicators also separate classes clearly: about 56.3% of pre-1980 homes are one-story versus only 6.4% in 1980+ homes.\nThese relationships are useful for machine learning because they are high-signal, non-random patterns tied to construction era. A classifier can exploit combinations of structural size, layout, and style features to estimate the probability that a home is pre-1980.\nFor visual clarity, the first and third charts use display-only axis zoom (high-percentile limits) so extreme outliers do not compress the main pattern. The full, untrimmed data is still used for modeling.\n\n\nShow the code\n# Summary stats used in interpretation\nsummary_stats = (\n    df.groupby(\"before1980\")[[\"livearea\", \"numbaths\", \"stories\", \"tasp\", \"netprice\"]]\n    .mean()\n    .round(2)\n)\nsummary_stats\n\n\n\n\n\n\n\n\n\nlivearea\nnumbaths\nstories\ntasp\nnetprice\n\n\nbefore1980\n\n\n\n\n\n\n\n\n\n0\n1878.92\n2.98\n1.76\n1090878.11\n1086428.29\n\n\n1\n1289.84\n1.97\n1.21\n247490.60\n244883.83\n\n\n\n\n\n\n\n\n\nShow the code\n# Display-only caps for visual readability (do not affect modeling data)\nlivearea_p99 = float(df[\"livearea\"].quantile(0.99))\n\n# Chart 1: Live area by class\np1 = (\n    ggplot(df, aes(x=\"era\", y=\"livearea\", fill=\"era\"))\n    + geom_boxplot(alpha=0.75, outlier_alpha=0.08)\n    + coord_cartesian(ylim=[0, livearea_p99])\n    + labs(\n        title=\"Livable Area by Class (99th Percentile Zoom)\",\n        subtitle=f\"Display capped at {livearea_p99:,.0f} sq ft to reduce outlier distortion\",\n        x=\"Class\",\n        y=\"Live Area (sq ft)\",\n    )\n    + theme_minimal()\n    + theme(legend_position=\"none\")\n    + ggsize(900, 480)\n)\n\n# Chart 2: Tax assessed selling price by class (log scale)\np2 = (\n    ggplot(df, aes(x=\"era\", y=\"tasp\", fill=\"era\"))\n    + geom_boxplot(alpha=0.75, outlier_alpha=0.05)\n    + scale_y_log10()\n    + labs(\n        title=\"Tax Assessed Price by Class (log scale)\",\n        x=\"Class\",\n        y=\"Tax Assessed Selling Price (log10)\",\n    )\n    + theme_minimal()\n    + theme(legend_position=\"none\")\n    + ggsize(900, 480)\n)\n\n# Chart 3: Relationship between size and bathrooms\nsample_df = df.sample(5000, random_state=42)\nlivearea_sample_p995 = float(sample_df[\"livearea\"].quantile(0.995))\np3 = (\n    ggplot(sample_df, aes(x=\"livearea\", y=\"numbaths\", color=\"era\"))\n    + geom_point(alpha=0.35, size=1.7)\n    + coord_cartesian(xlim=[0, livearea_sample_p995], ylim=[0, 9.5])\n    + labs(\n        title=\"Live Area vs Bathrooms (sample, 99.5th Percentile X Zoom)\",\n        subtitle=f\"X-axis capped at {livearea_sample_p995:,.0f} sq ft for readability\",\n        x=\"Live Area (sq ft)\",\n        y=\"Number of Bathrooms\",\n        color=\"Class\",\n    )\n    + theme_minimal()\n    + ggsize(900, 500)\n)\n\np1\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\nShow the code\np2\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\nShow the code\np3\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\nShow the code\n# Additional style/garage prevalence summary\nstyle_summary = (\n    df.groupby(\"era\")[[\"arcstyle_ONE-STORY\", \"arcstyle_TWO-STORY\", \"gartype_Att\"]]\n    .mean()\n    .mul(100)\n    .round(1)\n)\nstyle_summary\n\n\n\n\n\n\n\n\n\narcstyle_ONE-STORY\narcstyle_TWO-STORY\ngartype_Att\n\n\nera\n\n\n\n\n\n\n\n1980 or Later\n6.4\n40.5\n60.3\n\n\nBefore 1980\n56.3\n9.1\n23.5"
+  },
+  {
+    "objectID": "250_Projects/P4_template.html#questiontask-2",
+    "href": "250_Projects/P4_template.html#questiontask-2",
+    "title": "Client Report - Can You Predict That?",
+    "section": "QUESTION|TASK 2",
+    "text": "QUESTION|TASK 2\nBuild a classification model labeling houses as being built “before 1980” or “during or after 1980”. Your goal is to reach or exceed 90% accuracy. Explain your final model choice (algorithm, tuning parameters, etc) and describe what other models you tried.\nI tested three algorithms using the same 80/20 stratified split:\n\nLogistic Regression (scaled features)\nGradient Boosting Classifier\nRandom Forest Classifier\n\nThen I tuned Random Forest with GridSearchCV and selected the best cross-validated configuration. The tuned Random Forest reached 92.84% test accuracy, exceeding the 90% target.\nI selected Random Forest as the final model because it outperformed the alternatives in holdout accuracy and ROC-AUC while handling nonlinear interactions well.\n\n\nShow the code\n# Avoid target leakage:\n# - drop yrbuilt because the target before1980 is derived from year built.\n# - drop parcel because it is an identifier, not a generalizable feature.\nX = df.drop(columns=[\"before1980\", \"yrbuilt\", \"parcel\", \"era\"], errors=\"ignore\")\ny = df[\"before1980\"]\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X,\n    y,\n    test_size=0.20,\n    random_state=42,\n    stratify=y,\n)\n\nbaseline_models = {\n    \"Logistic Regression\": Pipeline(\n        [\n            (\"scaler\", StandardScaler()),\n            (\"clf\", LogisticRegression(max_iter=5000, solver=\"liblinear\")),\n        ]\n    ),\n    \"Gradient Boosting\": GradientBoostingClassifier(random_state=42),\n    \"Random Forest (baseline)\": RandomForestClassifier(\n        random_state=42,\n        n_estimators=200,\n        n_jobs=-1,\n    ),\n}\n\nbaseline_results = []\nfor name, model in baseline_models.items():\n    model.fit(X_train, y_train)\n    preds = model.predict(X_test)\n    probs = model.predict_proba(X_test)[:, 1]\n\n    baseline_results.append(\n        {\n            \"Model\": name,\n            \"Accuracy\": accuracy_score(y_test, preds),\n            \"Precision\": precision_score(y_test, preds),\n            \"Recall\": recall_score(y_test, preds),\n            \"F1\": f1_score(y_test, preds),\n            \"ROC_AUC\": roc_auc_score(y_test, probs),\n        }\n    )\n\nbaseline_results_df = pd.DataFrame(baseline_results).sort_values(\"Accuracy\", ascending=False)\nbaseline_results_df\n\n\n\n\n\n\n\n\n\nModel\nAccuracy\nPrecision\nRecall\nF1\nROC_AUC\n\n\n\n\n2\nRandom Forest (baseline)\n0.927995\n0.941771\n0.943087\n0.942428\n0.978665\n\n\n1\nGradient Boosting\n0.898538\n0.908410\n0.931564\n0.919841\n0.961693\n\n\n0\nLogistic Regression\n0.872791\n0.888586\n0.910615\n0.899465\n0.937098\n\n\n\n\n\n\n\n\n\nShow the code\n# Tune Random Forest\nrf_param_grid = {\n    \"n_estimators\": [200, 350],\n    \"max_depth\": [None, 16],\n    \"min_samples_split\": [2, 5],\n    \"max_features\": [\"sqrt\"],\n}\n\nrf_grid = GridSearchCV(\n    estimator=RandomForestClassifier(random_state=42, n_jobs=-1),\n    param_grid=rf_param_grid,\n    cv=4,\n    scoring=\"accuracy\",\n    n_jobs=-1,\n)\n\nrf_grid.fit(X_train, y_train)\nbest_rf = rf_grid.best_estimator_\n\nrf_preds = best_rf.predict(X_test)\nrf_probs = best_rf.predict_proba(X_test)[:, 1]\n\nrf_metrics = pd.DataFrame(\n    {\n        \"Metric\": [\"Accuracy\", \"Precision\", \"Recall\", \"F1\", \"ROC_AUC\"],\n        \"Value\": [\n            accuracy_score(y_test, rf_preds),\n            precision_score(y_test, rf_preds),\n            recall_score(y_test, rf_preds),\n            f1_score(y_test, rf_preds),\n            roc_auc_score(y_test, rf_probs),\n        ],\n    }\n)\n\nprint(\"Best RF parameters:\", rf_grid.best_params_)\nprint(\"Best cross-val accuracy:\", round(rf_grid.best_score_, 4))\nrf_metrics\n\n\nBest RF parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 350}\nBest cross-val accuracy: 0.9233\n\n\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\n0\nAccuracy\n0.928431\n\n\n1\nPrecision\n0.943047\n\n\n2\nRecall\n0.942388\n\n\n3\nF1\n0.942717\n\n\n4\nROC_AUC\n0.978810"
+  },
+  {
+    "objectID": "250_Projects/P4_template.html#questiontask-3",
+    "href": "250_Projects/P4_template.html#questiontask-3",
+    "title": "Client Report - Can You Predict That?",
+    "section": "QUESTION|TASK 3",
+    "text": "QUESTION|TASK 3\nJustify your classification model by discussing the most important features selected by your model. This discussion should include a feature importance chart and a description of the features.\nThe final Random Forest ranked livearea, arcstyle_ONE-STORY, stories, numbaths, and price-assessment features (tasp, netprice, sprice) among the most important predictors. This is consistent with the domain context: home form factor and footprint differ meaningfully between older and newer construction periods.\nPractically, this means the model is not relying on a single feature. It is using a pattern of size, layout, and valuation signals, which generally improves robustness compared to one-variable rules.\n\n\nShow the code\nrf_importance = (\n    pd.Series(best_rf.feature_importances_, index=X.columns)\n    .sort_values(ascending=False)\n    .reset_index()\n)\nrf_importance.columns = [\"feature\", \"importance\"]\n\ntop_rf_importance = rf_importance.head(15)\ntop_rf_importance\n\n\n\n\n\n\n\n\n\nfeature\nimportance\n\n\n\n\n0\nlivearea\n0.084573\n\n\n1\narcstyle_ONE-STORY\n0.077952\n\n\n2\nstories\n0.077855\n\n\n3\nnumbaths\n0.061559\n\n\n4\ntasp\n0.059662\n\n\n5\nnetprice\n0.057978\n\n\n6\nsprice\n0.056963\n\n\n7\ngartype_Att\n0.056820\n\n\n8\nbasement\n0.042084\n\n\n9\nquality_C\n0.040766\n\n\n10\nabstrprd\n0.036896\n\n\n11\nquality_B\n0.027542\n\n\n12\nnocars\n0.026919\n\n\n13\narcstyle_TWO-STORY\n0.026228\n\n\n14\nsmonth\n0.025564\n\n\n\n\n\n\n\n\n\nShow the code\nimportance_plot = (\n    ggplot(top_rf_importance, aes(x=\"feature\", y=\"importance\"))\n    + geom_bar(stat=\"identity\", fill=\"#2f5d62\")\n    + coord_flip()\n    + labs(\n        title=\"Top 15 Feature Importances - Final Random Forest\",\n        x=\"Feature\",\n        y=\"Importance\",\n    )\n    + theme_minimal()\n    + ggsize(900, 500)\n)\n\nimportance_plot"
+  },
+  {
+    "objectID": "250_Projects/P4_template.html#questiontask-4",
+    "href": "250_Projects/P4_template.html#questiontask-4",
+    "title": "Client Report - Can You Predict That?",
+    "section": "QUESTION|TASK 4",
+    "text": "QUESTION|TASK 4\nDescribe the quality of your classification model using 2-3 different evaluation metrics. You also need to explain how to interpret each of the evaluation metrics you use.\nI used Accuracy, Precision, Recall, and ROC-AUC.\n\nAccuracy (0.9284): 92.84% of all homes in the test set were classified correctly.\nPrecision (0.9430): when the model predicts “before 1980,” it is correct 94.30% of the time.\nRecall (0.9424): the model correctly finds 94.24% of truly pre-1980 homes.\nROC-AUC (0.9788): across thresholds, the model has excellent class-separation ability (close to 1.0 is best).\n\nThe confusion matrix shows balanced performance in both classes, not just one-sided accuracy.\n\n\nShow the code\nfinal_eval = pd.DataFrame(\n    {\n        \"Metric\": [\"Accuracy\", \"Precision\", \"Recall\", \"F1\", \"ROC_AUC\"],\n        \"Value\": [\n            accuracy_score(y_test, rf_preds),\n            precision_score(y_test, rf_preds),\n            recall_score(y_test, rf_preds),\n            f1_score(y_test, rf_preds),\n            roc_auc_score(y_test, rf_probs),\n        ],\n    }\n)\nfinal_eval\n\n\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\n0\nAccuracy\n0.928431\n\n\n1\nPrecision\n0.943047\n\n\n2\nRecall\n0.942388\n\n\n3\nF1\n0.942717\n\n\n4\nROC_AUC\n0.978810\n\n\n\n\n\n\n\n\n\nShow the code\n# Confusion matrix for final model\ncm = confusion_matrix(y_test, rf_preds)\ncm_df = pd.DataFrame(\n    cm,\n    index=[\"Actual: 1980 or later\", \"Actual: Before 1980\"],\n    columns=[\"Pred: 1980 or later\", \"Pred: Before 1980\"],\n)\ncm_df\n\n\n\n\n\n\n\n\n\nPred: 1980 or later\nPred: Before 1980\n\n\n\n\nActual: 1980 or later\n1556\n163\n\n\nActual: Before 1980\n165\n2699\n\n\n\n\n\n\n\n\n\nShow the code\nfig, ax = plt.subplots(figsize=(6, 4.5))\nConfusionMatrixDisplay(\n    confusion_matrix=cm,\n    display_labels=[\"1980 or Later\", \"Before 1980\"],\n).plot(ax=ax, colorbar=False)\nax.set_title(\"Final Random Forest - Confusion Matrix\")\nplt.show()"
+  },
+  {
+    "objectID": "250_Projects/P4_template.html#stretch-questiontask-1",
+    "href": "250_Projects/P4_template.html#stretch-questiontask-1",
+    "title": "Client Report - Can You Predict That?",
+    "section": "STRETCH QUESTION|TASK 1",
+    "text": "STRETCH QUESTION|TASK 1\nRepeat the classification model using 3 different algorithms. Display their Feature Importance, and Decision Matrix. Explain the differences between the models and which one you would recommend to the Client.\nAcross the three algorithms on the same leakage-safe feature set, Random Forest performed best overall (accuracy and ROC-AUC), followed by Gradient Boosting, then Logistic Regression. Logistic Regression produced a simpler linear decision boundary and lower accuracy, while tree-based models captured nonlinear interactions better.\nRecommendation for the client on this feature set: Random Forest.\n\n\nShow the code\ndef model_importance(model, feature_names, model_name):\n    \"\"\"Extract a comparable importance score for each model type.\"\"\"\n    if model_name == \"Logistic Regression\":\n        coef = np.abs(model.named_steps[\"clf\"].coef_[0])\n        return pd.Series(coef, index=feature_names).sort_values(ascending=False)\n    return pd.Series(model.feature_importances_, index=feature_names).sort_values(ascending=False)\n\nstretch_models = {\n    \"Logistic Regression\": Pipeline(\n        [\n            (\"scaler\", StandardScaler()),\n            (\"clf\", LogisticRegression(max_iter=5000, solver=\"liblinear\")),\n        ]\n    ),\n    \"Gradient Boosting\": GradientBoostingClassifier(random_state=42),\n    \"Random Forest\": RandomForestClassifier(\n        random_state=42,\n        n_estimators=350,\n        max_depth=None,\n        max_features=\"sqrt\",\n        min_samples_split=2,\n        n_jobs=-1,\n    ),\n}\n\nstretch_results = []\nstretch_artifacts = {}\n\nfor name, model in stretch_models.items():\n    model.fit(X_train, y_train)\n    preds = model.predict(X_test)\n    probs = model.predict_proba(X_test)[:, 1]\n\n    stretch_results.append(\n        {\n            \"Model\": name,\n            \"Accuracy\": accuracy_score(y_test, preds),\n            \"Precision\": precision_score(y_test, preds),\n            \"Recall\": recall_score(y_test, preds),\n            \"F1\": f1_score(y_test, preds),\n            \"ROC_AUC\": roc_auc_score(y_test, probs),\n        }\n    )\n\n    stretch_artifacts[name] = {\n        \"preds\": preds,\n        \"importance\": model_importance(model, X.columns, name),\n    }\n\nstretch_results_df = pd.DataFrame(stretch_results).sort_values(\"Accuracy\", ascending=False)\nstretch_results_df\n\n\n\n\n\n\n\n\n\nModel\nAccuracy\nPrecision\nRecall\nF1\nROC_AUC\n\n\n\n\n2\nRandom Forest\n0.928431\n0.943047\n0.942388\n0.942717\n0.978810\n\n\n1\nGradient Boosting\n0.898538\n0.908410\n0.931564\n0.919841\n0.961693\n\n\n0\nLogistic Regression\n0.872791\n0.888586\n0.910615\n0.899465\n0.937098\n\n\n\n\n\n\n\n\n\nShow the code\n# Feature importance + confusion matrix for each algorithm\nshort_name = {\n    \"Logistic Regression\": \"Logistic Reg\",\n    \"Gradient Boosting\": \"Gradient Boosting\",\n    \"Random Forest\": \"Random Forest\",\n}\n\nfor model_name in stretch_results_df[\"Model\"]:\n    display(Markdown(f\"### {model_name}\"))\n\n    top_imp = (\n        stretch_artifacts[model_name][\"importance\"]\n        .head(10)\n        .reset_index()\n    )\n    top_imp.columns = [\"feature\", \"importance\"]\n\n    p = (\n        ggplot(top_imp, aes(x=\"feature\", y=\"importance\"))\n        + geom_bar(stat=\"identity\", fill=\"#1f7a8c\")\n        + coord_flip()\n        + labs(\n            title=f\"Top 10 Importance - {short_name.get(model_name, model_name)}\",\n            x=\"Feature\",\n            y=\"Importance\",\n        )\n        + theme_minimal()\n        + ggsize(900, 500)\n    )\n    display(p)\n\n    fig, ax = plt.subplots(figsize=(5.7, 4.3))\n    ConfusionMatrixDisplay.from_predictions(\n        y_test,\n        stretch_artifacts[model_name][\"preds\"],\n        display_labels=[\"1980 or Later\", \"Before 1980\"],\n        colorbar=False,\n        ax=ax,\n    )\n    ax.set_title(f\"Decision Matrix - {model_name}\")\n    plt.show()\n\n\nRandom Forest\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\n\n\n\n\n\nGradient Boosting\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\n\n\n\n\n\nLogistic Regression"
+  },
+  {
+    "objectID": "250_Projects/P4_template.html#stretch-questiontask-2",
+    "href": "250_Projects/P4_template.html#stretch-questiontask-2",
+    "title": "Client Report - Can You Predict That?",
+    "section": "STRETCH QUESTION|TASK 2",
+    "text": "STRETCH QUESTION|TASK 2\nJoin the dwellings_neighborhoods_ml.csv data to the dwelling_ml.csv on the parcel column to create a new dataset. Duplicate the code for the stretch question above and update it to use this data. Explain the differences and if this changes the model you recommend to the Client.\nAfter adding neighborhood one-hot features, model performance improved substantially for tree-based methods. The best neighborhood-enhanced Random Forest achieved about 96.07% accuracy and 0.9910 ROC-AUC, which is stronger than the non-neighborhood model.\nImportant join detail: both source tables have repeated parcel values. To avoid row multiplication in the merge, I first aggregated neighborhood rows to one row per parcel using max() across the one-hot neighborhood columns.\nThis update strengthens my recommendation: use Random Forest with neighborhood features included when those fields are available.\n\n\nShow the code\n# Load neighborhood data and deduplicate by parcel before joining\nnbhd_raw = pd.read_csv(nbhd_url)\nnbhd_cols = [c for c in nbhd_raw.columns if c != \"parcel\"]\nnbhd_unique = nbhd_raw.groupby(\"parcel\", as_index=False)[nbhd_cols].max()\n\njoined = df.merge(nbhd_unique, on=\"parcel\", how=\"left\")\n\nX_nb = joined.drop(columns=[\"before1980\", \"yrbuilt\", \"parcel\", \"era\"], errors=\"ignore\").fillna(0)\ny_nb = joined[\"before1980\"]\n\nX_nb_train, X_nb_test, y_nb_train, y_nb_test = train_test_split(\n    X_nb,\n    y_nb,\n    test_size=0.20,\n    random_state=42,\n    stratify=y_nb,\n)\n\nnb_models = {\n    \"Logistic Regression\": Pipeline(\n        [\n            (\"scaler\", StandardScaler()),\n            (\"clf\", LogisticRegression(max_iter=5000, solver=\"liblinear\")),\n        ]\n    ),\n    \"Gradient Boosting\": GradientBoostingClassifier(random_state=42),\n    \"Random Forest\": RandomForestClassifier(\n        random_state=42,\n        n_estimators=350,\n        max_depth=None,\n        max_features=\"sqrt\",\n        min_samples_split=2,\n        n_jobs=-1,\n    ),\n}\n\nnb_results = []\nnb_artifacts = {}\n\nfor name, model in nb_models.items():\n    model.fit(X_nb_train, y_nb_train)\n    preds = model.predict(X_nb_test)\n    probs = model.predict_proba(X_nb_test)[:, 1]\n\n    nb_results.append(\n        {\n            \"Model\": name,\n            \"Accuracy\": accuracy_score(y_nb_test, preds),\n            \"Precision\": precision_score(y_nb_test, preds),\n            \"Recall\": recall_score(y_nb_test, preds),\n            \"F1\": f1_score(y_nb_test, preds),\n            \"ROC_AUC\": roc_auc_score(y_nb_test, probs),\n        }\n    )\n\n    if name == \"Logistic Regression\":\n        imp = pd.Series(\n            np.abs(model.named_steps[\"clf\"].coef_[0]),\n            index=X_nb.columns,\n        ).sort_values(ascending=False)\n    else:\n        imp = pd.Series(model.feature_importances_, index=X_nb.columns).sort_values(ascending=False)\n\n    nb_artifacts[name] = {\"preds\": preds, \"importance\": imp}\n\nnb_results_df = pd.DataFrame(nb_results).sort_values(\"Accuracy\", ascending=False)\nnb_results_df\n\n\n\n\n\n\n\n\n\nModel\nAccuracy\nPrecision\nRecall\nF1\nROC_AUC\n\n\n\n\n2\nRandom Forest\n0.960724\n0.971871\n0.965084\n0.968465\n0.991048\n\n\n0\nLogistic Regression\n0.945451\n0.957313\n0.955307\n0.956309\n0.985708\n\n\n1\nGradient Boosting\n0.927777\n0.941751\n0.942737\n0.942244\n0.977296\n\n\n\n\n\n\n\n\n\nShow the code\n# Feature importance + confusion matrix for each neighborhood model\nnb_short_name = {\n    \"Logistic Regression\": \"Logistic Reg\",\n    \"Gradient Boosting\": \"Gradient Boosting\",\n    \"Random Forest\": \"Random Forest\",\n}\n\nfor model_name in nb_results_df[\"Model\"]:\n    display(Markdown(f\"### Neighborhood Model: {model_name}\"))\n\n    top_imp = nb_artifacts[model_name][\"importance\"].head(10).reset_index()\n    top_imp.columns = [\"feature\", \"importance\"]\n\n    p = (\n        ggplot(top_imp, aes(x=\"feature\", y=\"importance\"))\n        + geom_bar(stat=\"identity\", fill=\"#3a7d44\")\n        + coord_flip()\n        + labs(\n            title=f\"Top 10 Importance - Nbhd {nb_short_name.get(model_name, model_name)}\",\n            x=\"Feature\",\n            y=\"Importance\",\n        )\n        + theme_minimal()\n        + ggsize(900, 500)\n    )\n    display(p)\n\n    fig, ax = plt.subplots(figsize=(5.7, 4.3))\n    ConfusionMatrixDisplay.from_predictions(\n        y_nb_test,\n        nb_artifacts[model_name][\"preds\"],\n        display_labels=[\"1980 or Later\", \"Before 1980\"],\n        colorbar=False,\n        ax=ax,\n    )\n    ax.set_title(f\"Decision Matrix - Neighborhood {model_name}\")\n    plt.show()\n\n\nNeighborhood Model: Random Forest\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\n\n\n\n\n\nNeighborhood Model: Logistic Regression\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\n\n\n\n\n\n\n\n\n\nNeighborhood Model: Gradient Boosting"
+  },
+  {
+    "objectID": "250_Projects/P4_template.html#stretch-questiontask-3",
+    "href": "250_Projects/P4_template.html#stretch-questiontask-3",
+    "title": "Client Report - Can You Predict That?",
+    "section": "STRETCH QUESTION|TASK 3",
+    "text": "STRETCH QUESTION|TASK 3\nCan you build a model that predicts the year a house was built? Explain the model and the evaluation metrics you would use to determine if the model is good.\nYes. I built a Random Forest Regressor to predict yrbuilt, again excluding leakage features (before1980 and parcel).\n\nMAE (Mean Absolute Error): average absolute miss in years.\nRMSE (Root Mean Squared Error): penalizes larger misses more heavily than MAE.\nR-squared: percent of variance in year built explained by the model.\n\nResults show moderate quality for year-level prediction: MAE ~10.12 years, RMSE ~16.60 years, R2 ~0.797. This is useful for rough historical estimation, but less reliable for precise year assignment.\n\n\nShow the code\nX_reg = df.drop(columns=[\"yrbuilt\", \"before1980\", \"parcel\", \"era\"], errors=\"ignore\")\ny_reg = df[\"yrbuilt\"]\n\nXr_train, Xr_test, yr_train, yr_test = train_test_split(\n    X_reg,\n    y_reg,\n    test_size=0.20,\n    random_state=42,\n)\n\nrf_reg = RandomForestRegressor(\n    random_state=42,\n    n_estimators=350,\n    n_jobs=-1,\n)\n\nrf_reg.fit(Xr_train, yr_train)\nyr_pred = rf_reg.predict(Xr_test)\n\nmae = mean_absolute_error(yr_test, yr_pred)\nrmse = np.sqrt(mean_squared_error(yr_test, yr_pred))\nr2 = r2_score(yr_test, yr_pred)\nwithin_5 = np.mean(np.abs(yr_pred - yr_test) &lt;= 5)\nwithin_10 = np.mean(np.abs(yr_pred - yr_test) &lt;= 10)\n\nreg_metrics = pd.DataFrame(\n    {\n        \"Metric\": [\"MAE\", \"RMSE\", \"R2\", \"Pct within 5 years\", \"Pct within 10 years\"],\n        \"Value\": [mae, rmse, r2, within_5, within_10],\n    }\n)\nreg_metrics\n\n\n\n\n\n\n\n\n\nMetric\nValue\n\n\n\n\n0\nMAE\n10.122403\n\n\n1\nRMSE\n16.604617\n\n\n2\nR2\n0.797436\n\n\n3\nPct within 5 years\n0.474362\n\n\n4\nPct within 10 years\n0.668340\n\n\n\n\n\n\n\n\n\nShow the code\n# Predicted vs actual year built\npred_df = pd.DataFrame({\"actual\": yr_test, \"predicted\": yr_pred})\n\nyear_plot = (\n    ggplot(pred_df.sample(3000, random_state=42), aes(x=\"actual\", y=\"predicted\"))\n    + geom_point(alpha=0.35, color=\"#2f6690\")\n    + geom_abline(slope=1, intercept=0, linetype=\"dashed\", color=\"#c1121f\")\n    + labs(\n        title=\"Predicted vs Actual Year Built (sample of 3,000)\",\n        x=\"Actual Year Built\",\n        y=\"Predicted Year Built\",\n    )\n    + theme_minimal()\n    + ggsize(900, 500)\n)\n\nyear_plot"
+  },
+  {
     "objectID": "250_Projects/project6.html",
     "href": "250_Projects/project6.html",
     "title": "Chaz Clark - Data Science Portfolio",
     "section": "",
     "text": "Here is a link to my GitHub portfolio: GitHub Portfolio\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "250_Projects/project5.html",
+    "href": "250_Projects/project5.html",
+    "title": "Client Report - The War with Star Wars",
+    "section": "",
+    "text": "Show the code\nimport pandas as pd \nimport numpy as np\nfrom lets_plot import *\n# add the additional libraries you need to import for ML here\n\nLetsPlot.setup_html(isolated_frame=True)\nShow the code\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\n\n# import your data here using pandas and the URL",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project5.html#elevator-pitch",
+    "href": "250_Projects/project5.html#elevator-pitch",
+    "title": "Client Report - The War with Star Wars",
+    "section": "Elevator pitch",
+    "text": "Elevator pitch\nA SHORT (2-3 SENTENCES) PARAGRAPH THAT DESCRIBES KEY INSIGHTS TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS. (Note: this is not a summary of the project, but a summary of the results.)\nA Client has requested this analysis and this is your one shot of what you would say to your boss in a 2 min elevator ride before he takes your report and hands it to the client.",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project5.html#questiontask-1",
+    "href": "250_Projects/project5.html#questiontask-1",
+    "title": "Client Report - The War with Star Wars",
+    "section": "QUESTION|TASK 1",
+    "text": "QUESTION|TASK 1\nShorten the column names and clean them up for easier use with pandas. Provide a table or list that exemplifies how you fixed the names.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project5.html#questiontask-2",
+    "href": "250_Projects/project5.html#questiontask-2",
+    "title": "Client Report - The War with Star Wars",
+    "section": "QUESTION|TASK 2",
+    "text": "QUESTION|TASK 2\nClean and format the data so that it can be used in a machine learning model. As you format the data, you should complete each item listed below. In your final report provide example(s) of the reformatted data with a short description of the changes made.\na. Filter the dataset to respondents that have seen at least one film\na. Create a new column that converts the age ranges to a single number. Drop the age range categorical column\na. Create a new column that converts the education groupings to a single number. Drop the school categorical column\na. Create a new column that converts the income ranges to a single number. Drop the income range categorical column\na. Create your target (also known as “y” or “label”) column based on the new income range column\na. One-hot encode all remaining categorical columns\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project5.html#questiontask-3",
+    "href": "250_Projects/project5.html#questiontask-3",
+    "title": "Client Report - The War with Star Wars",
+    "section": "QUESTION|TASK 3",
+    "text": "QUESTION|TASK 3\nValidate that the data provided on GitHub lines up with the article by recreating 2 of the visuals from the article.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here\n\n\n\n\nShow the code\n# Include and execute your code here",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project5.html#questiontask-4",
+    "href": "250_Projects/project5.html#questiontask-4",
+    "title": "Client Report - The War with Star Wars",
+    "section": "QUESTION|TASK 4",
+    "text": "QUESTION|TASK 4\nBuild a machine learning model that predicts whether a person makes more than $50k. Describe your model and report the accuracy.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project5.html#stretch-questiontask-1",
+    "href": "250_Projects/project5.html#stretch-questiontask-1",
+    "title": "Client Report - The War with Star Wars",
+    "section": "STRETCH QUESTION|TASK 1",
+    "text": "STRETCH QUESTION|TASK 1\nBuild a machine learning model that predicts whether a person makes more than $50k. With accuracy of at least 65%. Describe your model and report the accuracy.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project5.html#stretch-questiontask-2",
+    "href": "250_Projects/project5.html#stretch-questiontask-2",
+    "title": "Client Report - The War with Star Wars",
+    "section": "STRETCH QUESTION|TASK 2",
+    "text": "STRETCH QUESTION|TASK 2\nValidate the data provided on GitHub lines up with the article by recreating a 3rd visual from the article.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "250_Projects/project5.html#stretch-questiontask-3",
+    "href": "250_Projects/project5.html#stretch-questiontask-3",
+    "title": "Client Report - The War with Star Wars",
+    "section": "STRETCH QUESTION|TASK 3",
+    "text": "STRETCH QUESTION|TASK 3\nCreate a new column that converts the location groupings to a single number. Drop the location categorical column.\ntype your results and analysis here\n\n\nShow the code\n# Include and execute your code here",
+    "crumbs": [
+      "DS250 Projects",
+      "Project 5"
+    ]
+  },
+  {
+    "objectID": "Templates/ds250_project_template_clean.html",
+    "href": "Templates/ds250_project_template_clean.html",
+    "title": "Client Report - [Insert Project Title]",
+    "section": "",
+    "text": "paste your elevator pitch here A SHORT (4-5 SENTENCES) PARAGRAPH THAT DESCRIBES KEY INSIGHTS TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS.\n\n\nRead and format project data\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf = pd.read_csv(\"https://github.com/byuidatascience/data4names/raw/master/data-raw/names_year/names_year.csv\")\n\n\nHighlight the Questions and Tasks"
+  },
+  {
+    "objectID": "Templates/ds250_project_template_clean.html#elevator-pitch",
+    "href": "Templates/ds250_project_template_clean.html#elevator-pitch",
+    "title": "Client Report - [Insert Project Title]",
+    "section": "",
+    "text": "paste your elevator pitch here A SHORT (4-5 SENTENCES) PARAGRAPH THAT DESCRIBES KEY INSIGHTS TAKEN FROM METRICS IN THE PROJECT RESULTS THINK TOP OR MOST IMPORTANT RESULTS.\n\n\nRead and format project data\n# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html\n\n# Include and execute your code here\ndf = pd.read_csv(\"https://github.com/byuidatascience/data4names/raw/master/data-raw/names_year/names_year.csv\")\n\n\nHighlight the Questions and Tasks"
+  },
+  {
+    "objectID": "Templates/ds250_project_template_clean.html#questiontask-1",
+    "href": "Templates/ds250_project_template_clean.html#questiontask-1",
+    "title": "Client Report - [Insert Project Title]",
+    "section": "QUESTION|TASK 1",
+    "text": "QUESTION|TASK 1\nCOPY PASTE QUESTION|TASK 1 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n(\n  ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n)\n\n\n\n   \n       \n       \n       \n   \n   \n          \n   \n   \n\nMy useless chart\n\n\n\n\ntable example\n# Include and execute your code here\nmydat = (df.head(1000)\n    .groupby('year')\n    .sum()\n    .reset_index()\n    .tail(10)\n    .filter([\"year\", \"AK\",\"AR\"])\n)\ndisplay(mydat)\n\n\n\n\n\n\nNot much of a table\n\n\n\nyear\nAK\nAR\n\n\n\n\n96\n2006\n21.0\n183.0\n\n\n97\n2007\n28.0\n153.0\n\n\n98\n2008\n36.0\n212.0\n\n\n99\n2009\n34.0\n179.0\n\n\n100\n2010\n22.0\n196.0\n\n\n101\n2011\n41.0\n148.0\n\n\n102\n2012\n28.0\n140.0\n\n\n103\n2013\n26.0\n134.0\n\n\n104\n2014\n20.0\n114.0\n\n\n105\n2015\n28.0\n121.0"
+  },
+  {
+    "objectID": "Templates/ds250_project_template_clean.html#questiontask-2",
+    "href": "Templates/ds250_project_template_clean.html#questiontask-2",
+    "title": "Client Report - [Insert Project Title]",
+    "section": "QUESTION|TASK 2",
+    "text": "QUESTION|TASK 2\nCOPY PASTE QUESTION|TASK 2 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n# (\n#   ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n# )\n\n\n\n\ntable example\n# Include and execute your code here\n# mydat = df.head(1000)\\\n#     .groupby('year')\\\n#     .sum()\\\n#     .reset_index()\\\n#     .tail(10)\\\n#     .filter([\"year\", \"AK\",\"AR\"])\n\n# display(mydat)"
+  },
+  {
+    "objectID": "Templates/ds250_project_template_clean.html#questiontask-3",
+    "href": "Templates/ds250_project_template_clean.html#questiontask-3",
+    "title": "Client Report - [Insert Project Title]",
+    "section": "QUESTION|TASK 3",
+    "text": "QUESTION|TASK 3\nCOPY PASTE QUESTION|TASK 3 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n# Include and execute your code here\n# (\n#   ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n# )\n\n\n\n\ntable example\n# Include and execute your code here\n# mydat = df.head(1000)\\\n#     .groupby('year')\\\n#     .sum()\\\n#     .reset_index()\\\n#     .tail(10)\\\n#     .filter([\"year\", \"AK\",\"AR\"])\n\n# display(mydat)"
+  },
+  {
+    "objectID": "Templates/ds250_project_template_clean.html#questiontask-4",
+    "href": "Templates/ds250_project_template_clean.html#questiontask-4",
+    "title": "Client Report - [Insert Project Title]",
+    "section": "QUESTION|TASK 4",
+    "text": "QUESTION|TASK 4\nCOPY PASTE QUESTION|TASK 3 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n# Include and execute your code here\n# (\n#   ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n# )\n\n\n\n\ntable example\n# Include and execute your code here\n# mydat = df.head(1000)\\\n#     .groupby('year')\\\n#     .sum()\\\n#     .reset_index()\\\n#     .tail(10)\\\n#     .filter([\"year\", \"AK\",\"AR\"])\n\n# display(mydat)"
+  },
+  {
+    "objectID": "Templates/ds250_project_template_clean.html#questiontask-5",
+    "href": "Templates/ds250_project_template_clean.html#questiontask-5",
+    "title": "Client Report - [Insert Project Title]",
+    "section": "QUESTION|TASK 5",
+    "text": "QUESTION|TASK 5\nCOPY PASTE QUESTION|TASK 3 FROM THE PROJECT HERE\ntype your results and analysis here\n\n\nRead and format data\n# Include and execute your code here\n\n\ninclude figures in chunks and discuss your findings in the figure.\n\n\nplot example\n# Include and execute your code here\n# Include and execute your code here\n# (\n#   ggplot(df.head(200), aes(x='name', y='AK')) + geom_bar(stat='identity')\n# )\n\n\n\n\ntable example\n# Include and execute your code here\n# mydat = df.head(1000)\\\n#     .groupby('year')\\\n#     .sum()\\\n#     .reset_index()\\\n#     .tail(10)\\\n#     .filter([\"year\", \"AK\",\"AR\"])\n\n# display(mydat)"
   }
 ]
