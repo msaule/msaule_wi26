@@ -1,0 +1,792 @@
+---
+title: "Client Report - The War with Star Wars"
+subtitle: "Course DS 250"
+author: "Markuss Saule"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute:
+  warning: false
+  message: false
+  echo: true
+---
+
+```{python}
+import pandas as pd
+import numpy as np
+from lets_plot import *
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    roc_auc_score,
+    confusion_matrix,
+    balanced_accuracy_score,
+)
+
+LetsPlot.setup_html(isolated_frame=True)
+np.random.seed(42)
+```
+
+
+```{python}
+# Load and rename the Star Wars survey
+data_url = "https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv"
+article_url = "https://fivethirtyeight.com/features/americas-favorite-star-wars-movies-and-least-favorite-characters/"
+
+movie_cols = [
+    "episode_i_the_phantom_menace",
+    "episode_ii_attack_of_the_clones",
+    "episode_iii_revenge_of_the_sith",
+    "episode_iv_a_new_hope",
+    "episode_v_the_empire_strikes_back",
+    "episode_vi_return_of_the_jedi",
+]
+
+movie_labels = {
+    "episode_i_the_phantom_menace": "The Phantom Menace",
+    "episode_ii_attack_of_the_clones": "Attack of the Clones",
+    "episode_iii_revenge_of_the_sith": "Revenge of the Sith",
+    "episode_iv_a_new_hope": "A New Hope",
+    "episode_v_the_empire_strikes_back": "The Empire Strikes Back",
+    "episode_vi_return_of_the_jedi": "Return of the Jedi",
+}
+
+character_cols = [
+    "han_solo",
+    "luke_skywalker",
+    "princess_leia_organa",
+    "anakin_skywalker",
+    "obi_wan_kenobi",
+    "emperor_palpatine",
+    "darth_vader",
+    "lando_calrissian",
+    "boba_fett",
+    "c3po",
+    "r2_d2",
+    "jar_jar_binks",
+    "padme_amidala",
+    "yoda",
+]
+
+clean_columns = [
+    "respondent_id",
+    "seen_any_star_wars",
+    "fan_star_wars",
+    *[f"seen_{movie}" for movie in movie_cols],
+    *[f"rank_{movie}" for movie in movie_cols],
+    *[f"rate_{character}" for character in character_cols],
+    "shot_first",
+    "familiar_expanded_universe",
+    "fan_expanded_universe",
+    "fan_star_trek",
+    "gender",
+    "age_range",
+    "income_range",
+    "education_level",
+    "location_region",
+]
+
+raw = pd.read_csv(data_url, encoding="ISO-8859-1")
+raw.columns = clean_columns
+survey = raw.iloc[1:].copy().reset_index(drop=True)
+
+film_cols = [col for col in survey.columns if col.startswith("seen_episode_")]
+rank_cols = [col for col in survey.columns if col.startswith("rank_episode_")]
+rate_cols = [col for col in survey.columns if col.startswith("rate_")]
+
+for col in film_cols:
+    survey[col] = survey[col].notna().astype(int)
+
+for col in rank_cols:
+    survey[col] = pd.to_numeric(survey[col], errors="coerce")
+
+age_map = {
+    "18-29": 23.5,
+    "30-44": 37.0,
+    "45-60": 52.5,
+    "> 60": 65.0,
+}
+
+education_map = {
+    "Less than high school degree": 10,
+    "High school degree": 12,
+    "Some college or Associate degree": 14,
+    "Bachelor degree": 16,
+    "Graduate degree": 18,
+}
+
+income_map = {
+    "$0 - $24,999": 12500,
+    "$25,000 - $49,999": 37500,
+    "$50,000 - $99,999": 75000,
+    "$100,000 - $149,999": 125000,
+    "$150,000+": 175000,
+}
+
+favorability_map = {
+    "Very favorably": 2,
+    "Somewhat favorably": 1,
+    "Neither favorably nor unfavorably (neutral)": 0,
+    "Somewhat unfavorably": -1,
+    "Very unfavorably": -2,
+    "Unfamiliar (N/A)": np.nan,
+}
+
+location_code_map = {
+    "New England": 1,
+    "Middle Atlantic": 2,
+    "East North Central": 3,
+    "West North Central": 4,
+    "South Atlantic": 5,
+    "East South Central": 6,
+    "West South Central": 7,
+    "Mountain": 8,
+    "Pacific": 9,
+}
+
+# Use the stricter film-check filter so the modeling sample matches the article logic.
+viewers = survey.loc[survey[film_cols].sum(axis=1) >= 1].copy()
+viewers["age_value"] = viewers["age_range"].map(age_map)
+viewers["education_value"] = viewers["education_level"].map(education_map)
+viewers["income_value"] = viewers["income_range"].map(income_map)
+viewers["income_over_50k"] = np.where(
+    viewers["income_value"].isna(),
+    np.nan,
+    (viewers["income_value"] > 50000).astype(int),
+)
+viewers["location_code"] = viewers["location_region"].map(location_code_map)
+
+# Simple behavior summaries that keep the model readable.
+viewers["films_seen_count"] = viewers[film_cols].sum(axis=1)
+viewers["prequels_seen_count"] = viewers[film_cols[:3]].sum(axis=1)
+viewers["originals_seen_count"] = viewers[film_cols[3:]].sum(axis=1)
+viewers["avg_prequel_rank"] = viewers[rank_cols[:3]].mean(axis=1)
+viewers["avg_original_rank"] = viewers[rank_cols[3:]].mean(axis=1)
+viewers["rank_gap_original_minus_prequel"] = (
+    viewers["avg_prequel_rank"] - viewers["avg_original_rank"]
+)
+
+for col in rate_cols:
+    viewers[f"{col}_score"] = viewers[col].map(favorability_map)
+
+score_cols = [f"{col}_score" for col in rate_cols]
+viewers["favorability_mean"] = viewers[score_cols].mean(axis=1)
+viewers["favorability_positive_count"] = viewers[score_cols].gt(0).sum(axis=1)
+viewers["favorability_negative_count"] = viewers[score_cols].lt(0).sum(axis=1)
+viewers["favorability_unfamiliar_count"] = viewers[score_cols].isna().sum(axis=1)
+
+# Main modeling table: keep one-hot friendly categoricals, drop fields explicitly replaced by numeric versions.
+model_base = viewers.dropna(subset=["income_over_50k"]).copy()
+model_base = model_base.drop(
+    columns=[
+        "respondent_id",
+        "seen_any_star_wars",
+        "age_range",
+        "education_level",
+        "income_range",
+        "location_code",
+        *rate_cols,
+    ]
+)
+
+categorical_cols = model_base.select_dtypes(include="object").columns.tolist()
+encoded_ready = model_base.copy()
+
+for col in categorical_cols:
+    col_mode = encoded_ready[col].mode(dropna=True)
+    fill_value = col_mode.iloc[0] if not col_mode.empty else "Missing"
+    encoded_ready[col] = encoded_ready[col].fillna(fill_value)
+
+numeric_cols = [col for col in encoded_ready.columns if col not in categorical_cols]
+for col in numeric_cols:
+    encoded_ready[col] = encoded_ready[col].fillna(encoded_ready[col].median())
+
+encoded_df = pd.get_dummies(encoded_ready, columns=categorical_cols, dtype=int)
+
+X = encoded_df.drop(columns=["income_over_50k", "income_value"])
+y = encoded_df["income_over_50k"].astype(int)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.20,
+    random_state=42,
+    stratify=y,
+)
+```
+
+## Elevator pitch
+Using the GitHub survey file, I rebuilt a clean modeling table and verified that it reproduces the same respondent counts and movie preferences reported in FiveThirtyEight's original [article](https://fivethirtyeight.com/features/americas-favorite-star-wars-movies-and-least-favorite-characters/). The strongest income model reached **67.4% holdout accuracy**, which is better than a majority-class guess but only by about **3.7 percentage points**, so the survey contains some income signal but not enough for a reliable hiring shortcut. My recommendation is to use these results for audience insight, not to infer a job candidate's income in a real decision process.
+
+## QUESTION|TASK 1
+
+__Shorten the column names and clean them up for easier use with pandas.__ Provide a table or list that exemplifies how you fixed the names.
+
+The raw CSV uses full survey questions as column names, repeats movie titles across different question blocks, and stores follow-up labels under `Unnamed:` columns. I standardized everything to lower-case `snake_case`, replaced the repeated `Unnamed:` labels with the actual movie or character names, and added prefixes such as `seen_`, `rank_`, and `rate_` so the repeated movie titles stay distinct.
+
+```{python}
+rename_examples = pd.DataFrame(
+    {
+        "Original name": [
+            "RespondentID",
+            "Have you seen any of the 6 films in the Star Wars franchise?",
+            "Do you consider yourself to be a fan of the Star Wars film franchise?",
+            "Which of the following Star Wars films have you seen? ...",
+            "Unnamed: 4",
+            "Please rank the Star Wars films in order of preference ...",
+            "Unnamed: 13",
+            "Please state whether you view the following characters favorably ...",
+            "Unnamed: 24",
+            "Household Income",
+            "Location (Census Region)",
+        ],
+        "Clean name": [
+            "respondent_id",
+            "seen_any_star_wars",
+            "fan_star_wars",
+            "seen_episode_i_the_phantom_menace",
+            "seen_episode_ii_attack_of_the_clones",
+            "rank_episode_i_the_phantom_menace",
+            "rank_episode_v_the_empire_strikes_back",
+            "rate_han_solo",
+            "rate_c3po",
+            "income_range",
+            "location_region",
+        ],
+        "Fix applied": [
+            "short id in snake_case",
+            "shortened long question",
+            "shortened long question",
+            "prefixed movie checkbox field with seen_",
+            "replaced unnamed column with movie title",
+            "prefixed ranking field with rank_",
+            "replaced unnamed ranking column with movie title",
+            "prefixed character rating with rate_",
+            "replaced unnamed character column with character name",
+            "shortened demographic label",
+            "shortened demographic label",
+        ],
+    }
+)
+
+rename_examples
+```
+
+This naming cleanup made the rest of the work much safer. Instead of juggling duplicate movie titles or unreadable question strings, each feature now has one clear purpose.
+
+## QUESTION|TASK 2
+
+__Clean and format the data so that it can be used in a machine learning model.__ As you format the data, you should complete each item listed below. In your final report provide example(s) of the reformatted data with a short description of the changes made.  
+    a. Filter the dataset to respondents that have seen at least one film  
+    a. Create a new column that converts the age ranges to a single number. Drop the age range categorical column  
+    a. Create a new column that converts the education groupings to a single number. Drop the school categorical column  
+    a. Create a new column that converts the income ranges to a single number. Drop the income range categorical column  
+    a. Create your target (also known as “y” or “label”) column based on the new income range column  
+    a. One-hot encode all remaining categorical columns   
+
+For the modeling sample, I used the stricter checklist filter: respondents had to actually mark at least one movie title, not just answer "yes" to the screening question. That leaves **835** usable Star Wars viewers, which also matches the article's first chart. After removing rows with missing income, the machine-learning sample contains **674** respondents.
+
+I converted the age and income ranges to representative numeric values (midpoints for closed ranges and a reasonable upper-category stand-in for `> 60` and `$150,000+`). I converted education to approximate years of schooling, created the binary target `income_over_50k`, translated the 14 character favorability questions into ordered scores from `-2` to `2`, and then one-hot encoded the remaining categorical columns. Because the target is derived from `income_value`, I kept `income_value` in the cleaned table but dropped it from the feature matrix to avoid target leakage.
+
+```{python}
+prep_summary = pd.DataFrame(
+    {
+        "Step": [
+            "Rows in raw CSV",
+            "Real respondents after removing the duplicated header row",
+            "Respondents who checked at least one movie",
+            "Rows with reported income for modeling",
+            "Columns after required cleanup and feature engineering",
+            "Columns after one-hot encoding",
+        ],
+        "Value": [
+            len(raw),
+            len(survey),
+            len(viewers),
+            len(model_base),
+            model_base.shape[1],
+            encoded_df.shape[1],
+        ],
+    }
+)
+
+prep_summary
+```
+
+```{python}
+clean_sample = model_base[
+    [
+        "seen_episode_iv_a_new_hope",
+        "rank_episode_v_the_empire_strikes_back",
+        "age_value",
+        "education_value",
+        "income_value",
+        "income_over_50k",
+        "favorability_mean",
+        "location_region",
+    ]
+].head(6)
+
+clean_sample
+```
+
+The sample above shows the required cleanup in its most readable form. The original age, education, and income group labels are gone, and the new numeric columns are ready for modeling.
+
+```{python}
+encoded_preview_cols = [
+    "income_over_50k",
+    "age_value",
+    "education_value",
+    "films_seen_count",
+    "favorability_mean",
+    "fan_star_wars_Yes",
+    "gender_Male",
+    "location_region_Pacific",
+]
+
+encoded_df[encoded_preview_cols].head(6)
+```
+
+This preview shows the final machine-learning structure after one-hot encoding. The remaining text fields such as gender, fandom, shot-first response, and census region are now numeric indicator columns that a classifier can use directly.
+
+## QUESTION|TASK 3
+
+__Validate that the data provided on GitHub lines up with the article by recreating 2 of the visuals from the article.__
+
+I validated the GitHub file against the original FiveThirtyEight story in two ways. First, I rebuilt the "movies seen" chart using the **835** respondents who checked at least one title. Second, I rebuilt the "best movie" chart using the **471** respondents who had seen all six films. In both cases, the recreated percentages line up with the article after rounding to whole numbers.
+
+```{python}
+movie_seen_chart = pd.DataFrame(
+    {
+        "movie_key": movie_cols,
+        "movie": [movie_labels[movie] for movie in movie_cols],
+        "recreated_percent": (viewers[film_cols].mean() * 100).round(1).values,
+        "article_percent": [80, 68, 66, 73, 91, 88],
+    }
+)
+movie_seen_chart["difference"] = (
+    movie_seen_chart["recreated_percent"] - movie_seen_chart["article_percent"]
+).round(1)
+
+movie_seen_plot = (
+    ggplot(movie_seen_chart, aes(x="movie", y="recreated_percent"))
+    + geom_bar(stat="identity", fill="#1c8ccc")
+    + coord_flip()
+    + scale_y_continuous(limits=[0, 100])
+    + labs(
+        title="Which Star Wars Movies Have People Seen?",
+        subtitle=f"Recreated from {len(viewers)} respondents who checked at least one film",
+        x="",
+        y="Percent of respondents",
+    )
+    + theme_minimal()
+    + ggsize(900, 460)
+)
+
+movie_seen_plot
+```
+
+```{python}
+movie_seen_chart[["movie", "article_percent", "recreated_percent", "difference"]]
+```
+
+The same story appears in the recreated chart as in the article: the original trilogy dominates reach, especially **The Empire Strikes Back** and **Return of the Jedi**, while the prequels trail behind.
+
+```{python}
+all_six = viewers.loc[viewers[film_cols].eq(1).all(axis=1)].copy()
+
+favorite_chart = pd.DataFrame(
+    {
+        "movie_key": movie_cols,
+        "movie": [movie_labels[movie] for movie in movie_cols],
+        "recreated_percent": (all_six[rank_cols].eq(1).mean() * 100).round(1).values,
+        "article_percent": [10, 4, 6, 27, 36, 17],
+    }
+)
+favorite_chart["difference"] = (
+    favorite_chart["recreated_percent"] - favorite_chart["article_percent"]
+).round(1)
+
+favorite_plot = (
+    ggplot(favorite_chart, aes(x="movie", y="recreated_percent"))
+    + geom_bar(stat="identity", fill="#1c8ccc")
+    + coord_flip()
+    + scale_y_continuous(limits=[0, 40])
+    + labs(
+        title="What Is the Best Star Wars Movie?",
+        subtitle=f"Recreated from {len(all_six)} respondents who had seen all six films",
+        x="",
+        y="Percent naming it No. 1",
+    )
+    + theme_minimal()
+    + ggsize(900, 460)
+)
+
+favorite_plot
+```
+
+```{python}
+favorite_chart[["movie", "article_percent", "recreated_percent", "difference"]]
+```
+
+Again, the article's conclusion holds: **The Empire Strikes Back** is clearly the audience favorite, with **A New Hope** in second place and the prequels far behind.
+
+## QUESTION|TASK 4
+
+__Build a machine learning model that predicts whether a person makes more than $50k. Describe your model and report the accuracy.__
+
+I compared three student-friendly classifiers on the same 80/20 stratified split: Logistic Regression, Random Forest, and Gradient Boosting. The final Gradient Boosting model used small trees (`max_depth=2`) and a moderate number of boosting rounds (`n_estimators=150`, `learning_rate=0.05`) to keep the fit flexible without turning it into a black box with hundreds of deep trees.
+
+The best holdout accuracy was **67.4%**. That does beat the **63.7%** majority-class baseline, so there is real signal in the survey, but the lift is modest. The confusion matrix also shows the model is much better at identifying respondents above $50k than respondents at or below $50k, which is why I would treat this as a light segmentation tool rather than a reliable hiring-screen prediction model.
+
+```{python}
+# Compare a few candidate models on the same encoded feature set.
+model_results = []
+
+log_reg = LogisticRegression(max_iter=5000, solver="liblinear")
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+log_reg.fit(X_train_scaled, y_train)
+log_preds = log_reg.predict(X_test_scaled)
+log_probs = log_reg.predict_proba(X_test_scaled)[:, 1]
+
+model_results.append(
+    {
+        "Model": "Logistic Regression",
+        "Accuracy": accuracy_score(y_test, log_preds),
+        "Precision": precision_score(y_test, log_preds),
+        "Recall": recall_score(y_test, log_preds),
+        "F1": f1_score(y_test, log_preds),
+        "ROC_AUC": roc_auc_score(y_test, log_probs),
+    }
+)
+
+random_forest = RandomForestClassifier(
+    random_state=42,
+    n_estimators=500,
+    max_depth=None,
+    min_samples_leaf=4,
+    n_jobs=-1,
+)
+random_forest.fit(X_train, y_train)
+rf_preds = random_forest.predict(X_test)
+rf_probs = random_forest.predict_proba(X_test)[:, 1]
+
+model_results.append(
+    {
+        "Model": "Random Forest",
+        "Accuracy": accuracy_score(y_test, rf_preds),
+        "Precision": precision_score(y_test, rf_preds),
+        "Recall": recall_score(y_test, rf_preds),
+        "F1": f1_score(y_test, rf_preds),
+        "ROC_AUC": roc_auc_score(y_test, rf_probs),
+    }
+)
+
+final_model = GradientBoostingClassifier(
+    random_state=42,
+    n_estimators=150,
+    learning_rate=0.05,
+    max_depth=2,
+    min_samples_leaf=1,
+    subsample=1.0,
+)
+final_model.fit(X_train, y_train)
+final_preds = final_model.predict(X_test)
+final_probs = final_model.predict_proba(X_test)[:, 1]
+
+model_results.append(
+    {
+        "Model": "Gradient Boosting",
+        "Accuracy": accuracy_score(y_test, final_preds),
+        "Precision": precision_score(y_test, final_preds),
+        "Recall": recall_score(y_test, final_preds),
+        "F1": f1_score(y_test, final_preds),
+        "ROC_AUC": roc_auc_score(y_test, final_probs),
+    }
+)
+
+model_results_df = (
+    pd.DataFrame(model_results)
+    .round(4)
+    .sort_values("Accuracy", ascending=False)
+)
+
+model_results_df
+```
+
+```{python}
+majority_baseline_accuracy = max(y_test.mean(), 1 - y_test.mean())
+
+final_metrics = pd.DataFrame(
+    {
+        "Metric": [
+            "Accuracy",
+            "Precision",
+            "Recall",
+            "F1",
+            "ROC_AUC",
+            "Balanced Accuracy",
+            "Majority-class baseline accuracy",
+        ],
+        "Value": [
+            accuracy_score(y_test, final_preds),
+            precision_score(y_test, final_preds),
+            recall_score(y_test, final_preds),
+            f1_score(y_test, final_preds),
+            roc_auc_score(y_test, final_probs),
+            balanced_accuracy_score(y_test, final_preds),
+            majority_baseline_accuracy,
+        ],
+    }
+).round(4)
+
+final_metrics
+```
+
+```{python}
+final_confusion = pd.DataFrame(
+    confusion_matrix(y_test, final_preds),
+    index=["Actual: $50k or less", "Actual: above $50k"],
+    columns=["Predicted: $50k or less", "Predicted: above $50k"],
+)
+
+final_confusion
+```
+
+The confusion matrix makes the main limitation easy to see. The model correctly flags **79** of the **86** higher-income respondents in the test set, but it only correctly identifies **12** of the **49** lower-income respondents. In other words, the model is recall-heavy on the `> $50k` class and still too blunt for an applicant-level use case.
+
+```{python}
+importance_df = (
+    pd.Series(final_model.feature_importances_, index=X.columns)
+    .sort_values(ascending=False)
+    .head(10)
+    .reset_index()
+)
+importance_df.columns = ["feature", "importance"]
+importance_df["feature"] = importance_df["feature"].str.replace("_", " ", regex=False)
+
+importance_plot = (
+    ggplot(importance_df, aes(x="feature", y="importance"))
+    + geom_bar(stat="identity", fill="#2f5d62")
+    + coord_flip()
+    + labs(
+        title="Top 10 Signals in the Final Gradient Boosting Model",
+        x="",
+        y="Relative importance",
+    )
+    + theme_minimal()
+    + ggsize(900, 500)
+)
+
+importance_plot
+```
+
+The strongest signals were not obscure trivia answers. They were mostly demographic and broad preference indicators: **age**, **education**, overall **character favorability**, and how respondents ranked the original trilogy versus the prequels. That is a useful client insight because it suggests income differences show up more in the strength and pattern of fandom than in one isolated Star Wars opinion.
+
+---
+
+## STRETCH QUESTION|TASK 1
+
+__Build a machine learning model that predicts whether a person makes more than $50k. With accuracy of at least 65%. Describe your model and report the accuracy.__
+
+Yes. The selected Gradient Boosting model cleared the stretch target with **67.4% accuracy** on the holdout set. Compared with the default Gradient Boosting settings, the selected version improved both accuracy and ROC-AUC by using shallower trees and a slower learning rate.
+
+```{python}
+stretch_model_results = []
+
+gb_default = GradientBoostingClassifier(random_state=42)
+gb_default.fit(X_train, y_train)
+gb_default_preds = gb_default.predict(X_test)
+gb_default_probs = gb_default.predict_proba(X_test)[:, 1]
+
+stretch_model_results.append(
+    {
+        "Model": "GB default",
+        "Accuracy": accuracy_score(y_test, gb_default_preds),
+        "Precision": precision_score(y_test, gb_default_preds),
+        "Recall": recall_score(y_test, gb_default_preds),
+        "F1": f1_score(y_test, gb_default_preds),
+        "ROC_AUC": roc_auc_score(y_test, gb_default_probs),
+    }
+)
+
+stretch_model_results.append(
+    {
+        "Model": "GB selected",
+        "Accuracy": accuracy_score(y_test, final_preds),
+        "Precision": precision_score(y_test, final_preds),
+        "Recall": recall_score(y_test, final_preds),
+        "F1": f1_score(y_test, final_preds),
+        "ROC_AUC": roc_auc_score(y_test, final_probs),
+    }
+)
+
+pd.DataFrame(stretch_model_results).round(4)
+```
+
+## STRETCH QUESTION|TASK 2
+
+__Validate the data provided on GitHub lines up with the article by recreating a 3rd visual from the article.__
+
+For a third validation check, I recreated the article's ranking-distribution story: how often each movie lands in the top third, middle third, and bottom third. Once again, the respondent count matches the article exactly at **471** and the percentages line up within rounding.
+
+```{python}
+thirds_df = pd.DataFrame(
+    {
+        "movie": [movie_labels[movie] for movie in movie_cols],
+        "Top third": (all_six[rank_cols].isin([1, 2]).mean() * 100).round(1).values,
+        "Middle third": (all_six[rank_cols].isin([3, 4]).mean() * 100).round(1).values,
+        "Bottom third": (all_six[rank_cols].isin([5, 6]).mean() * 100).round(1).values,
+    }
+)
+
+thirds_long = thirds_df.melt(
+    id_vars="movie",
+    var_name="segment",
+    value_name="percent",
+)
+
+thirds_plot = (
+    ggplot(thirds_long, aes(x="movie", y="percent", fill="segment"))
+    + geom_bar(stat="identity", position="dodge")
+    + coord_flip()
+    + scale_fill_manual(
+        values={
+            "Top third": "#7AAE42",
+            "Middle third": "#1c8ccc",
+            "Bottom third": "#F24C13",
+        }
+    )
+    + scale_y_continuous(limits=[0, 70])
+    + labs(
+        title="How People Rate the Star Wars Movies",
+        subtitle=f"Recreated from {len(all_six)} respondents who had seen all six films",
+        x="",
+        y="Percent of respondents",
+        fill="Ranking band",
+    )
+    + theme_minimal()
+    + ggsize(980, 520)
+)
+
+thirds_plot
+```
+
+```{python}
+thirds_df
+```
+
+This third chart reinforces the same pattern as the first two: the original trilogy dominates the top third of rankings, while the prequels land in the bottom third much more often.
+
+## STRETCH QUESTION|TASK 3
+
+__Create a new column that converts the location groupings to a single number. Drop the location categorical column.__
+
+I created a numeric `location_code` based on the standard U.S. Census division order. This works as a compact substitute for the text region labels, but it is not as informative as one-hot encoding because the numbers are labels, not natural magnitudes. When I replaced one-hot census-region indicators with a single `location_code`, the final model's accuracy slipped from **67.4%** to **65.2%**.
+
+```{python}
+location_code_table = pd.DataFrame(
+    {
+        "location_region": list(location_code_map.keys()),
+        "location_code": list(location_code_map.values()),
+    }
+)
+
+location_code_table
+```
+
+```{python}
+location_model_base = viewers.dropna(subset=["income_over_50k"]).copy()
+location_model_base = location_model_base.drop(
+    columns=[
+        "respondent_id",
+        "seen_any_star_wars",
+        "age_range",
+        "education_level",
+        "income_range",
+        "location_region",
+        *rate_cols,
+    ]
+)
+
+location_categorical_cols = location_model_base.select_dtypes(include="object").columns.tolist()
+location_encoded_ready = location_model_base.copy()
+
+for col in location_categorical_cols:
+    col_mode = location_encoded_ready[col].mode(dropna=True)
+    fill_value = col_mode.iloc[0] if not col_mode.empty else "Missing"
+    location_encoded_ready[col] = location_encoded_ready[col].fillna(fill_value)
+
+location_numeric_cols = [
+    col for col in location_encoded_ready.columns if col not in location_categorical_cols
+]
+for col in location_numeric_cols:
+    location_encoded_ready[col] = location_encoded_ready[col].fillna(
+        location_encoded_ready[col].median()
+    )
+
+location_encoded_df = pd.get_dummies(
+    location_encoded_ready,
+    columns=location_categorical_cols,
+    dtype=int,
+)
+
+X_location = location_encoded_df.drop(columns=["income_over_50k", "income_value"])
+y_location = location_encoded_df["income_over_50k"].astype(int)
+
+X_location_train, X_location_test, y_location_train, y_location_test = train_test_split(
+    X_location,
+    y_location,
+    test_size=0.20,
+    random_state=42,
+    stratify=y_location,
+)
+
+location_model = GradientBoostingClassifier(
+    random_state=42,
+    n_estimators=150,
+    learning_rate=0.05,
+    max_depth=2,
+    min_samples_leaf=1,
+    subsample=1.0,
+)
+location_model.fit(X_location_train, y_location_train)
+location_preds = location_model.predict(X_location_test)
+
+pd.DataFrame(
+    {
+        "Model version": ["Main model with one-hot region", "Stretch model with location_code"],
+        "Accuracy": [
+            accuracy_score(y_test, final_preds),
+            accuracy_score(y_location_test, location_preds),
+        ],
+    }
+).round(4)
+```
+
+For the client, the takeaway is simple: a one-hot location representation is the better choice for prediction, while `location_code` is a reasonable compact summary column for reporting or quick inspection.
+
+---
